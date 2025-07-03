@@ -2,12 +2,10 @@
 
 
 
-int main() {
 
+int main(){
 
-    printf("Hello world\n");
-    printf("stuff\n"); 
-    
-    
+    list_asset_files("assets"); 
+
     return 0; 
 }

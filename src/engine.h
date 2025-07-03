@@ -12,7 +12,7 @@
 // fuctions needed 
 
 void list_asset_files(const char* folder); 
-int load_obj_file(const char* filepath); 
+void select_file(const char* filepath);
 
 
 #endif
