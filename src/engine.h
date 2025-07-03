@@ -11,7 +11,7 @@
 
 // fuctions needed 
 
-void list_asset_files(const char* folder); 
+char** list_asset_files(const char* folder); 
 void select_file(const char* filepath);
 
 
