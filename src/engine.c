@@ -37,7 +37,7 @@ const char *select_file(const char** filename){
     }
 
     char input[255];
-    int found = 1; 
+    
     while(1){
         printf("please enter which file you'd like to render: ");
         scanf("%255s", input);
@@ -47,8 +47,11 @@ const char *select_file(const char** filename){
                 return filename[i];
                 break;
             }
+
         }
+        printf("No match was found, please try again!\n\n");
 
     }
 
+    printf("Here is what you selected; %s", input);
 }
