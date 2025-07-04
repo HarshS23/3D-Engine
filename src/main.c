@@ -1,5 +1,6 @@
 #include "main.h"
 
+// all pointers needed 
 const char **FileList; 
 const char *Filename;
 
@@ -7,7 +8,6 @@ const char *Filename;
 int main(){
     FileList = list_asset_files("assets"); 
     Filename = select_file(FileList);
-    //printf("Here is the file you selected: %s\n", Filename);
     ParseFile(Filename);    
     free_arrays();
     return 0; 
@@ -32,12 +32,13 @@ void ParseFile(const char *filename){
 
 
 
+
 }
 
 void free_arrays(){
-    for(size_t i = 0; FileList[i]; i++){
-        
+    for(int i = 0; FileList[i]; i++){
         free((void *) FileList[i]);
     }
+
     free((void*)FileList);
 }
