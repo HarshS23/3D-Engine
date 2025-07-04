@@ -5,5 +5,6 @@
 #include "SDL.h"
 #include "engine.h"
 
+void free_arrays();
 
 
