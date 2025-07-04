@@ -29,8 +29,26 @@ char** list_asset_files(const char* folder){
     return filename;
 }
 
-void select_file(const char* filepath){
+const char *select_file(const char** filename){
 
+    int count = 0; 
+    while(filename[count] != NULL){
+        count++;
+    }
 
-    void;
+    char input[255];
+    int found = 1; 
+    while(1){
+        printf("please enter which file you'd like to render: ");
+        scanf("%255s", input);
+
+        for(int i = 0; i < count; i++){
+            if(strcmp(input, filename[i]) == 0){
+                return filename[i];
+                break;
+            }
+        }
+
+    }
+
 }

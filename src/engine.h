@@ -12,7 +12,7 @@
 // fuctions needed 
 
 char** list_asset_files(const char* folder); 
-void select_file(const char* filepath);
+const char *select_file(const char** filename);
 
 
 #endif

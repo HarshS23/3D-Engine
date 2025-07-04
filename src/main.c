@@ -4,8 +4,9 @@
 
 
 int main(){
+    char** files; 
 
-    list_asset_files("assets"); 
-
+    files = list_asset_files("assets"); 
+    select_file(files);
     return 0; 
 }
