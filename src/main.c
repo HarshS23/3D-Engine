@@ -1,8 +1,10 @@
 #include "main.h"
 
-// all pointers needed 
+// dynamic arrays for file names 
 const char **FileList; 
 const char *Filename;
+
+
 
 
 int main(){
@@ -30,8 +32,7 @@ void ParseFile(const char *filename){
     printf("Here is the filename: %s\n", inputfile);
 
 
-
-
+    
 
 }
 
