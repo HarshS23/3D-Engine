@@ -9,8 +9,8 @@ CFLAGS = -Wall -Wextra -std=c99 -O2
 SDL2DIR = -I/opt/homebrew/include/SDL2 -L/opt/homebrew/lib -lSDL2
 
 # source and output 
-SRC = src/main.c src/engine.c 
-OUT = bin/engine
+SRC = src/main.c src/file_finder.c 
+OUT = bin/file_finder
 
 BUILD = ./$(OUT)
 

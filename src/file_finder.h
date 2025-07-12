@@ -1,5 +1,5 @@
-#ifndef ENGINE_H 
-#define ENGINE_H
+#ifndef FILE_FINDER_H 
+#define FILE_FINDER_H
 
 #include <stdio.h>
 #include <stdlib.h>
