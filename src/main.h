@@ -3,7 +3,7 @@
 #include <math.h>
 #include <string.h>
 #include "SDL.h"
-#include "engine.h"
+#include "file_finder.h"
 
 void free_arrays();
 
