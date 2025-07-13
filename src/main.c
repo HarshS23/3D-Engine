@@ -10,13 +10,13 @@ const char *Filename;
 int main(){
     FileList = list_asset_files("assets"); 
     Filename = select_file(FileList);
-    ParseFile(Filename);    
+    FindFile(Filename);    
     free_arrays();
     return 0; 
 }
 
 
-void ParseFile(const char *filename){
+void FindFile(const char *filename){
     const char prefix[] = "assets/";
     unsigned int needed = (sizeof(prefix) - 1) + strlen(filename) - 1; // byte size allocation
     char *inputfile = malloc(needed); 
@@ -30,9 +30,6 @@ void ParseFile(const char *filename){
     strcat(inputfile, filename);
 
     printf("Here is the filename: %s\n", inputfile);
-
-
-    
 
 }
 

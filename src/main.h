@@ -7,4 +7,4 @@
 
 void free_arrays();
 
-void ParseFile(const char *filename);
+void FindFile(const char *filename);
