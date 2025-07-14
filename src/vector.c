@@ -18,7 +18,7 @@ Vec3 subVec3(Vec3 a , Vec3 b){
     Vec3 c; 
     
     c.x = a.x - b.x; 
-    c.y = a.y - b.x; 
+    c.y = a.y - b.y; 
     c.z = a.z - b.z; 
     
     return c; 
