@@ -40,3 +40,12 @@ Mesh LoadMeshFromOBJ(const char *filename){
     rewind(fread); // resets pointer to the beginning of the file 
 
 }
+
+
+
+void FreeMesh(Mesh model){
+    free(model.vertices);
+    free(model.face);
+    free(model.Normal_Vec);
+    free(model.texture);
+}
