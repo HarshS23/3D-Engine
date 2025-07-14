@@ -4,6 +4,7 @@
 
 #include "vector.h"
 #include "file_finder.h"
+#include <stdio.h>
 
 // a face triangle stores 3 vertex indices 
 typedef struct{
