@@ -11,9 +11,9 @@
 // a face triangle stores 3 vertex indices 
 typedef struct{
 
-    int a; 
-    int b; 
-    int c; 
+    int v[3]; // vector 
+    int vt[3]; //texture 
+    int vn[3]; //normal 
 
 }Face;
 

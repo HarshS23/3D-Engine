@@ -39,6 +39,28 @@ Mesh LoadMeshFromOBJ(const char *filename){
 
     rewind(fread); // resets pointer to the beginning of the file 
 
+    int Vidx = 0, Fidx = 0, Nidx = 0, Tidx = 0; 
+
+    while(fgets(line, sizeof(line), fread)){
+        // defines vertex v, and stores in vectices array 
+        if(line[0] == 'v' && line[1] == ' '){
+            sscanf(line, "v %f %f %f", &model.vertices[Vidx].x, &model.vertices[Vidx].y, &model.vertices[Vidx].z);
+            Vidx++;
+        }
+
+        //f v/vt/vn
+        //f 3220/1805/2160 3205/1790/2160 3219/1804/2160 
+        if(line[0] == 'f' && line[1] == ' '){
+            sscanf(line, "f %d/%d/%d %d/%d/%d %d/%d/%d" ,&model.face[Fidx].v[0], &model.face[Fidx].vt[0] , &model.face[Fidx].vn[0]
+                                                        ,&model.face[Fidx].v[1], &model.face[Fidx].vt[1] , &model.face[Fidx].vn[1]
+                                                        ,&model.face[Fidx].v[2], &model.face[Fidx].vt[2] , &model.face[Fidx].vn[2]);
+            Fidx++;
+        }
+
+    }
+
+
+
 }
 
 
