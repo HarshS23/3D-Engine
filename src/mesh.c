@@ -37,5 +37,6 @@ Mesh LoadMeshFromOBJ(const char *filename){
         exit(EXIT_FAILURE); 
     }
 
-    
+    rewind(fread); // resets pointer to the beginning of the file 
+
 }
