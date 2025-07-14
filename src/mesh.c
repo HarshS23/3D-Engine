@@ -54,8 +54,33 @@ Mesh LoadMeshFromOBJ(const char *filename){
             sscanf(line, "f %d/%d/%d %d/%d/%d %d/%d/%d" ,&model.face[Fidx].v[0], &model.face[Fidx].vt[0] , &model.face[Fidx].vn[0]
                                                         ,&model.face[Fidx].v[1], &model.face[Fidx].vt[1] , &model.face[Fidx].vn[1]
                                                         ,&model.face[Fidx].v[2], &model.face[Fidx].vt[2] , &model.face[Fidx].vn[2]);
+
+            for(int i = 0; i < 3 ; i++){
+                model.face[Fidx].v[i] -= 1;
+                model.face[Fidx].vt[i] -= 1;
+                model.face[Fidx].vn[i] -= 1;
+            }
             Fidx++;
         }
+
+        if(line[0] == 'v' && line[1] == 't' && line[2] == ' '){
+            sscanf(line,"vt %f %f", &model.texture[Tidx].u, &model.texture[Tidx].v);
+            Tidx++;
+        }
+
+        if(line[0] == 'v' && line[1] == 'n' && line[2] == ' '){
+            sscanf(line, "vn %f %f %f", &model.Normal_Vec[Nidx].x, &model.Normal_Vec[Nidx].y, &model.Normal_Vec[Nidx].z);
+            Nidx++;
+        }
+
+
+        else{
+            continue;
+        }
+
+
+        fclose(fread);
+
 
     }
 
