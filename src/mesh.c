@@ -79,16 +79,17 @@ Mesh LoadMeshFromOBJ(const char *filename){
         }
 
 
+        for(int i = 0; i < model.Num_vertex; i++){
+            model.vertices[i].z += 1.6;
+        }
+
+
         fclose(fread);
 
 
     }
 
-
-
 }
-
-
 
 void FreeMesh(Mesh model){
     free(model.vertices);
