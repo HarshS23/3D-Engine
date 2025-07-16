@@ -5,6 +5,7 @@ const char **FileList;
 const char *Filename;
 const char *FullPath; 
 
+Mesh model;
 
 
 
@@ -15,14 +16,31 @@ int main(){
     FullPath = FindFile(Filename);
     printf("Here is the file name!!!! : %s\n", FullPath);
 
+    model = LoadMeshFromOBJ(FullPath); // accessing the model.obj file 
 
+    Init_display(800, 600); 
+    SDL_Event event; 
 
+    int running = 1; 
 
+    while(running){
+        while(SDL_PollEvent(&event)){
+            if(event.type == SDL_QUIT){
+                running = 0; 
+            }
+        }
 
+        clear_display();
+        rendermesh(&model);
+        present_display();
 
+    }
 
-
+    shutdown();
+    FreeMesh(model);
     free_arrays();
+
+    
     return 0; 
 }
 
