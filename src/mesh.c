@@ -87,6 +87,7 @@ Mesh LoadMeshFromOBJ(const char *filename){
 
     fclose(fread);
 
+    return model;
 }
 
 void FreeMesh(Mesh model){
