@@ -83,11 +83,9 @@ Mesh LoadMeshFromOBJ(const char *filename){
             model.vertices[i].z += 1.6;
         }
 
-
-        fclose(fread);
-
-
     }
+
+    fclose(fread);
 
 }
 

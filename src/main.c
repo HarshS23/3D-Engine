@@ -17,8 +17,8 @@ int main(){
     printf("Here is the file name!!!! : %s\n", FullPath);
 
     model = LoadMeshFromOBJ(FullPath); // accessing the model.obj file 
-
-    Init_display(800, 600); 
+    
+    init_display(800, 600);
     SDL_Event event; 
 
     int running = 1; 
@@ -40,7 +40,7 @@ int main(){
     FreeMesh(model);
     free_arrays();
 
-    
+
     return 0; 
 }
 
