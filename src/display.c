@@ -22,6 +22,11 @@ void init_display(int width, int height){
 
     Renderer = SDL_CreateRenderer(Window,-1, SDL_RENDERER_ACCELERATED);
 
+    if(Renderer == NULL){
+        printf("Could not be rendererd (display.c)\n");
+        exit(EXIT_FAILURE);
+    }
+
     center_x = width / 2;
     center_y = height / 2;
 }
@@ -39,11 +44,11 @@ void clear_display(void){
 void rendermesh(const Mesh *model){
     SDL_SetRenderDrawColor(Renderer, 255, 255, 255, 255); // line color is white 
 
-    for(int i = 0; model->Num_face; i++){
+    for(int i = 0; i < model->Num_face; i++){
         Face face = model->face[i]; 
 
 
-        for(int edge; edge < 3; edge++){
+        for(int edge = 0; edge < 3; edge++){
             int idx0 = face.v[edge]; 
             int idx1 = face.v[(edge + 1) % 3];
             
