@@ -7,7 +7,7 @@
 #include "vector.h"
 
 
-void init_display(uint32_t width, uint32_t height); 
+void init_display(int width, int height); 
 void clear_display(void);
 void rendermesh(const Mesh *model);
 void present_display(void); 

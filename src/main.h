@@ -4,6 +4,7 @@
 #include <string.h>
 #include "SDL.h"
 #include "file_finder.h"
+#include "display.h"
 
 void free_arrays();
 
