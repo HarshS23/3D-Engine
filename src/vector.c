@@ -28,9 +28,9 @@ Vec3 subVec3(Vec3 a , Vec3 b){
 Vec3 scalVec3(Vec3 a , float s ){
 
     Vec3 c; 
-    c.x = c.x * s; 
-    c.y = c.y * s;
-    c.z = c.z * s; 
+    c.x = a.x * s; 
+    c.y = a.y * s;
+    c.z = a.z * s; 
 
     return c; 
 } 

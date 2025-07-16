@@ -11,8 +11,10 @@ Mesh model;
 
 
 int main(){
+
     FileList = list_asset_files("assets"); 
-    Filename = select_file(FileList);
+    //Filename = select_file(FileList);
+    Filename = "f22.obj";
     FullPath = FindFile(Filename);
     printf("Here is the file name!!!! : %s\n", FullPath);
 
