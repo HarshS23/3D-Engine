@@ -8,4 +8,4 @@
 
 void free_arrays();
 
-void FindFile(const char *filename);
+char* FindFile(const char *filename);
