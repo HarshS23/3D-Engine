@@ -114,10 +114,24 @@ void RenderWireVertrix(const Mesh *model){
         int x = (v.x / v.z) * scale + center_x; 
         int y = -(v.y / v.z) * scale + center_y;
         //SDL_RenderDrawPoint(Renderer, x, y);
-        SDL_Rect dot = {x-2 , y-2 , 5, 5}; // 5x5 red square
-        SDL_RenderFillRect(Renderer, &dot);
+        // SDL_Rect dot = {x-2 , y-2 , 5, 5}; // 5x5 red square
+        // SDL_RenderFillRect(Renderer, &dot);
+        DrawCircle(Renderer, x, y, 5);
     }
 
+}
+
+void DrawCircle(SDL_Renderer *Renderer, int x, int y, int r){
+
+    for(int i = 0; i < r; i++){
+        for(int j = 0; j < r; j++){
+            int dx = r - i; 
+            int dy = r - j;
+            if((dx*dx + dy*dy) <= (r*r)){
+                SDL_RenderDrawPoint(Renderer, x + dx , y + dy);
+            }
+        }
+    }
 }
 
 
