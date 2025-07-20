@@ -79,6 +79,54 @@ void RenderWireFrame(const Mesh *model){
 }
 
 
+
+void RenderWireVertrix(const Mesh *model){
+
+     SDL_SetRenderDrawColor(Renderer, 255, 255, 255, 255); // line color is white 
+
+    for(int i = 0; i < model->Num_face; i++){
+        Face face = model->face[i]; 
+
+
+        for(int edge = 0; edge < 3; edge++){
+            int idx0 = face.v[edge]; 
+            int idx1 = face.v[(edge + 1) % 3];
+            
+            Vec3 v0 = model->vertices[idx0];
+            Vec3 v1 = model->vertices[idx1];
+
+            int x0 = (v0.x  / v0.z) * scale + center_x; 
+            int y0 = -(v0.y / v0.z) * scale + center_y;
+            int x1 = (v1.x  / v1.z) * scale + center_x; 
+            int y1 = -(v1.y / v1.z) * scale + center_y;
+
+
+            SDL_RenderDrawLine(Renderer, x0 ,y0 , x1 , y1);
+
+            for(int i = 0; i < model->Num_vertex; i++){
+                Vec3 v = model->vertices[i];
+                int x = (v.x / v.z) * scale + center_x; 
+                int y = -(v.y / v.z) * scale + center_y;
+                SDL_RenderDrawPoint(Renderer, x, y);
+            }
+
+
+        }
+    }
+
+    // vertices will be red 
+
+    SDL_SetRenderDrawColor(Renderer, 255, 0 , 0 ,255); // this is red 
+
+
+
+
+
+
+
+}
+
+
 void present_display(void){
     SDL_RenderPresent(Renderer);
 }

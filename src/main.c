@@ -14,8 +14,7 @@ int main(){
 
     FileList = list_asset_files("assets"); 
     Filename = select_file(FileList);
-
-    //Filename = "f22.obj";
+    
     FullPath = FindFile(Filename);
     
     model = LoadMeshFromOBJ(FullPath); // accessing the model.obj file 
