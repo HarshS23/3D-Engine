@@ -31,15 +31,13 @@ char** list_asset_files(const char* folder){
         perror("realloc");
         exit(EXIT_FAILURE);
     }
-    
     filename = tmp;
+    
+    filename[count] = NULL;
     closedir(dir); 
 
     return filename;
 }
-
-
-
 
 
 const char *select_file(const char** filename){

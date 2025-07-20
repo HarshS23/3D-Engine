@@ -14,7 +14,14 @@ Mesh LoadMeshFromOBJ(const char *filename){
         exit(EXIT_FAILURE);
     }
 
+
+    // initiilzing model components
     Mesh model;
+    model.Num_vertex = 0;
+    model.Num_face = 0; 
+    model.Num_Nvec = 0; 
+    model.Num_texture = 0;
+
 
     while(fgets(line, sizeof(line), fread)){
 
@@ -80,7 +87,7 @@ Mesh LoadMeshFromOBJ(const char *filename){
 
 
         for(int i = 0; i < model.Num_vertex; i++){
-            model.vertices[i].z += 1.6;
+            model.vertices[i].z += 2.0;
         }
 
     }

@@ -1,9 +1,9 @@
 #include "main.h"
 
 // dynamic arrays for file names 
-const char **FileList; 
-const char *Filename;
-const char *FullPath; 
+char **FileList; 
+char *Filename;
+char *FullPath; 
 
 Mesh model;
 
@@ -13,11 +13,10 @@ Mesh model;
 int main(){
 
     FileList = list_asset_files("assets"); 
-    //Filename = select_file(FileList);
-    Filename = "f22.obj";
-    FullPath = FindFile(Filename);
-    printf("Here is the file name!!!! : %s\n", FullPath);
+    Filename = select_file(FileList);
 
+    //Filename = "f22.obj";
+    FullPath = FindFile(Filename);
     model = LoadMeshFromOBJ(FullPath); // accessing the model.obj file 
     
     init_display(800, 600);
@@ -60,6 +59,7 @@ char* FindFile(const char *filename){
     strcpy(inputfile, prefix);
     strcat(inputfile, filename);
 
+    printf("\n\nINPUT FILE : %s\n\n", inputfile);
     return inputfile;
 
 }
