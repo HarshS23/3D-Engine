@@ -87,7 +87,7 @@ Mesh LoadMeshFromOBJ(const char *filename){
 
 
         for(int i = 0; i < model.Num_vertex; i++){
-            model.vertices[i].z += 2.0;
+            model.vertices[i].z += 0.1;
         }
 
     }

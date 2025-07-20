@@ -5,7 +5,7 @@
 static SDL_Window *Window = NULL; 
 static SDL_Renderer *Renderer = NULL; 
 static int center_x, center_y; 
-static float scale = 100.0f; 
+static float scale = 1000.0f; 
 
 
 
@@ -65,10 +65,10 @@ void rendermesh(const Mesh *model){
             Vec3 v0 = model->vertices[idx0];
             Vec3 v1 = model->vertices[idx1];
 
-            int x0 = (v0.x  / v0.z) * scale * center_x; 
-            int y0 = (v0.y / v0.z) * scale * center_y;
-            int x1 = (v1.x  / v1.z) * scale * center_x; 
-            int y1 = (v1.y / v1.z) * scale * center_y;
+            int x0 = (v0.x  / v0.z) * scale + center_x; 
+            int y0 = -(v0.y / v0.z) * scale + center_y;
+            int x1 = (v1.x  / v1.z) * scale + center_x; 
+            int y1 = -(v1.y / v1.z) * scale + center_y;
 
 
             SDL_RenderDrawLine(Renderer, x0 ,y0 , x1 , y1);
