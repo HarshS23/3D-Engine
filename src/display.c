@@ -50,7 +50,7 @@ void clear_display(void){
 
 
 
-void rendermesh(const Mesh *model){
+void RenderWireFrame(const Mesh *model){
 
     SDL_SetRenderDrawColor(Renderer, 255, 255, 255, 255); // line color is white 
 

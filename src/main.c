@@ -33,7 +33,7 @@ int main(){
         }
 
         clear_display();
-        rendermesh(&model);
+        RenderWireFrame(&model);
         present_display();
 
     }

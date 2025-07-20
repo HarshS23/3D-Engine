@@ -9,7 +9,8 @@
 int initlizeWindow(void);
 void init_display(int width, int height); 
 void clear_display(void);
-void rendermesh(const Mesh *model);
+void RenderWireFrame(const Mesh *model);
+void RenderWireVertrix(const Mesh *model);
 void present_display(void); 
 void shutdown(void);
 
