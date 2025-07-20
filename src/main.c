@@ -14,7 +14,7 @@ int main(){
 
     FileList = list_asset_files("assets"); 
     Filename = select_file(FileList);
-    
+
     FullPath = FindFile(Filename);
     
     model = LoadMeshFromOBJ(FullPath); // accessing the model.obj file 
@@ -23,16 +23,32 @@ int main(){
     SDL_Event event; 
 
     int running = 1; 
+    int render_mode = 1; // 1 = wirefram, 2 = wirevertex; 
+
+
 
     while(running){
         while(SDL_PollEvent(&event)){
             if(event.type == SDL_QUIT){
                 running = 0; 
             }
+
+            if(event.type == SDL_KEYDOWN){
+                if(event.key.keysym.sym == SDLK_1) render_mode = 1; 
+                if(event.key.keysym.sym == SDLK_2) render_mode = 2;
+            }
         }
 
         clear_display();
-        RenderWireFrame(&model);
+
+        if(render_mode == 1){
+            RenderWireFrame(&model);
+        }
+
+        if(render_mode == 2){
+            RenderWireVertrix(&model);
+        }
+        
         present_display();
 
     }
