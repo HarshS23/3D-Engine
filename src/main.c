@@ -17,9 +17,10 @@ int main(){
 
     //Filename = "f22.obj";
     FullPath = FindFile(Filename);
+    
     model = LoadMeshFromOBJ(FullPath); // accessing the model.obj file 
     
-    init_display(800, 600);
+    init_display(1080, 900);
     SDL_Event event; 
 
     int running = 1; 
