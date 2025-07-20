@@ -35,7 +35,7 @@ LDFLAGS = -L/opt/homebrew/lib -lSDL2
 SRC = src/main.c src/file_finder.c src/vector.c src/mesh.c src/display.c
 
 # Output binary
-TARGET = bin/main
+TARGET = ./bin/main
 
 # Default target (runs when you type `make`)
 all: build
@@ -43,6 +43,10 @@ all: build
 # Build rule
 build:
 	$(CC) $(CFLAGS) $(SRC) $(LDFLAGS) -o $(TARGET)
+	./$(TARGET)
+
+run: build
+	./$(TARGET)
 
 # Clean rule
 clean:

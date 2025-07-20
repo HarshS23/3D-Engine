@@ -9,21 +9,30 @@ static float scale = 100.0f;
 
 
 
+
+
+
 void init_display(int width, int height){
-    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Init(SDL_INIT_EVERYTHING);
+     if(SDL_Init(SDL_INIT_EVERYTHING) != 0){
+        printf("Unable to initlizize (display.c)\n");
+        exit(EXIT_FAILURE);
+    }
 
     Window = SDL_CreateWindow("3D-ENGINE", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,\
     width, height , SDL_WINDOW_SHOWN);
 
-    if(Window == NULL){
+    if(!Window){
         printf("The window could not be created! (display.c)\n");
         exit(EXIT_FAILURE);
     }
 
-    Renderer = SDL_CreateRenderer(Window,-1, SDL_RENDERER_ACCELERATED);
+    Renderer = SDL_CreateRenderer(Window,-1, 0);
 
     if(Renderer == NULL){
         printf("Could not be rendererd (display.c)\n");
+        SDL_DestroyWindow(Window);
+        SDL_Quit();
         exit(EXIT_FAILURE);
     }
 
@@ -42,6 +51,7 @@ void clear_display(void){
 
 
 void rendermesh(const Mesh *model){
+
     SDL_SetRenderDrawColor(Renderer, 255, 255, 255, 255); // line color is white 
 
     for(int i = 0; i < model->Num_face; i++){

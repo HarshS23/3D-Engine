@@ -6,7 +6,7 @@
 #include "mesh.h"
 #include "vector.h"
 
-
+int initlizeWindow(void);
 void init_display(int width, int height); 
 void clear_display(void);
 void rendermesh(const Mesh *model);
