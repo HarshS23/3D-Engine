@@ -48,7 +48,7 @@ int main(){
         if(render_mode == 2){
             RenderWireVertrix(&model);
         }
-        
+
         present_display();
 
     }

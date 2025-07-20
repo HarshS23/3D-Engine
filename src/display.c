@@ -102,15 +102,6 @@ void RenderWireVertrix(const Mesh *model){
 
 
             SDL_RenderDrawLine(Renderer, x0 ,y0 , x1 , y1);
-
-            for(int i = 0; i < model->Num_vertex; i++){
-                Vec3 v = model->vertices[i];
-                int x = (v.x / v.z) * scale + center_x; 
-                int y = -(v.y / v.z) * scale + center_y;
-                SDL_RenderDrawPoint(Renderer, x, y);
-            }
-
-
         }
     }
 
@@ -118,11 +109,14 @@ void RenderWireVertrix(const Mesh *model){
 
     SDL_SetRenderDrawColor(Renderer, 255, 0 , 0 ,255); // this is red 
 
-
-
-
-
-
+    for(int i = 0; i < model->Num_vertex; i++){
+        Vec3 v = model->vertices[i];
+        int x = (v.x / v.z) * scale + center_x; 
+        int y = -(v.y / v.z) * scale + center_y;
+        //SDL_RenderDrawPoint(Renderer, x, y);
+        SDL_Rect dot = {x-2 , y-2 , 5, 5}; // 5x5 red square
+        SDL_RenderFillRect(Renderer, &dot);
+    }
 
 }
 
