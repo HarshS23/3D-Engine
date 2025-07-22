@@ -5,6 +5,9 @@
 #include "SDL.h"
 #include "file_finder.h"
 #include "display.h"
+#include "mesh.h"
+#include "vector.h"
+#include "camera.h"
 
 void free_arrays();
 
