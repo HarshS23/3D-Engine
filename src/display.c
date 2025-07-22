@@ -124,11 +124,6 @@ void RenderWireVertrix(const Mesh *model, Camera cam){
         int x = (transform.x / transform.z) * scale + center_x; 
         int y = -(transform.y / transform.z) * scale + center_y;
 
-
-
-        //SDL_RenderDrawPoint(Renderer, x, y);
-        // SDL_Rect dot = {x-2 , y-2 , 5, 5}; // 5x5 red square
-        // SDL_RenderFillRect(Renderer, &dot);
         DrawCircle(Renderer, x, y, 5);
     }
 

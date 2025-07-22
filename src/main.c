@@ -14,7 +14,7 @@ Camera cam;
 
 int main(){
 
-    cam.postion = (Vec3){0.0f, 0.0f, 0.0f};
+    cam.postion = (Vec3){0.0f, 0.0f, 3.0f};
     cam.yaw = 0.0f;
     cam.pitch = 0.0f;
 
@@ -52,10 +52,10 @@ int main(){
                 if(event.key.keysym.sym == SDLK_a) cam.postion.x -= 0.1f; // left 
                 if(event.key.keysym.sym == SDLK_d) cam.postion.x += 0.1f; // right 
 
-                if(event.key.keysym.sym == SDLK_LEFT) cam.yaw -= 0.5f; // rotate left 
-                if(event.key.keysym.sym == SDLK_RIGHT) cam.yaw += 0.5f; // rotate right 
-                if(event.key.keysym.sym == SDLK_UP) cam.pitch += 0.5f; // rotate up 
-                if(event.key.keysym.sym == SDLK_DOWN) cam.pitch -= 0.5f; // rotate down 
+                if(event.key.keysym.sym == SDLK_LEFT) cam.yaw -= 0.1f; // rotate left 
+                if(event.key.keysym.sym == SDLK_RIGHT) cam.yaw += 0.1f; // rotate right 
+                if(event.key.keysym.sym == SDLK_UP) cam.pitch += 0.1f; // rotate up 
+                if(event.key.keysym.sym == SDLK_DOWN) cam.pitch -= 0.1f; // rotate down 
             }
         }
 

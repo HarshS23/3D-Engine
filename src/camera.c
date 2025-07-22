@@ -7,7 +7,7 @@ Vec3 RotateYawPitch(Vec3 v, float yaw, float pitch){
     float SinYaw = sinf(yaw); 
 
     float x1 = v.x * CosYaw - v.z * SinYaw;
-    float z1 = v.x * SinYaw - v.z * CosYaw; 
+    float z1 = v.x * SinYaw + v.z * CosYaw; 
     float y1 = v.y;
 
     // apply pitching rotation around x axis 
@@ -35,6 +35,8 @@ Vec3 TransformCamera(Vec3 vertex, Camera cam){
 
 
     Vec3 rotated = RotateYawPitch(translate , cam.yaw, cam.pitch);
+    return rotated; 
+
     
 
 }
