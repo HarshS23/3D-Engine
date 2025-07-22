@@ -25,6 +25,16 @@ Vec3 RotateYawPitch(Vec3 v, float yaw, float pitch){
 
     return rotated;
 
+}
 
+Vec3 TransformCamera(Vec3 vertex, Camera cam){
+    Vec3 translate;
+    translate.x = vertex.x - cam.postion.x; 
+    translate.y = vertex.y - cam.postion.y;
+    translate.z = vertex.z - cam.postion.z;
+
+
+    Vec3 rotated = RotateYawPitch(translate , cam.yaw, cam.pitch);
+    
 
 }
