@@ -7,10 +7,16 @@ char *FullPath;
 
 Mesh model;
 
+Camera cam;
+
 
 
 
 int main(){
+
+    cam.postion = (Vec3){0.0f, 0.0f, 0.0f};
+    cam.yaw = 0.0f;
+    cam.pitch = 0.0f;
 
     FileList = list_asset_files("assets"); 
     Filename = select_file(FileList);
@@ -36,17 +42,31 @@ int main(){
             if(event.type == SDL_KEYDOWN){
                 if(event.key.keysym.sym == SDLK_1) render_mode = 1; 
                 if(event.key.keysym.sym == SDLK_2) render_mode = 2;
+
+
+
+                // camera movement 
+
+                if(event.key.keysym.sym == SDLK_w) cam.postion.z += 0.1f; // forward 
+                if(event.key.keysym.sym == SDLK_s) cam.postion.z -= 0.1f; // backwards 
+                if(event.key.keysym.sym == SDLK_a) cam.postion.x -= 0.1f; // left 
+                if(event.key.keysym.sym == SDLK_d) cam.postion.x += 0.1f; // right 
+
+                if(event.key.keysym.sym == SDLK_LEFT) cam.yaw -= 0.5f; // rotate left 
+                if(event.key.keysym.sym == SDLK_RIGHT) cam.yaw += 0.5f; // rotate right 
+                if(event.key.keysym.sym == SDLK_UP) cam.pitch += 0.5f; // rotate up 
+                if(event.key.keysym.sym == SDLK_DOWN) cam.pitch -= 0.5f; // rotate down 
             }
         }
 
         clear_display();
 
         if(render_mode == 1){
-            RenderWireFrame(&model);
+            RenderWireFrame(&model, cam);
         }
 
         if(render_mode == 2){
-            RenderWireVertrix(&model);
+            RenderWireVertrix(&model, cam);
         }
 
         present_display();

@@ -50,7 +50,7 @@ void clear_display(void){
 
 
 
-void RenderWireFrame(const Mesh *model){
+void RenderWireFrame(const Mesh *model, Camera cam){
 
     SDL_SetRenderDrawColor(Renderer, 255, 255, 255, 255); // line color is white 
 
@@ -65,10 +65,14 @@ void RenderWireFrame(const Mesh *model){
             Vec3 v0 = model->vertices[idx0];
             Vec3 v1 = model->vertices[idx1];
 
-            int x0 = (v0.x  / v0.z) * scale + center_x; 
-            int y0 = -(v0.y / v0.z) * scale + center_y;
-            int x1 = (v1.x  / v1.z) * scale + center_x; 
-            int y1 = -(v1.y / v1.z) * scale + center_y;
+            Vec3 transform_v0 = TransformCamera(v0 , cam); 
+            Vec3 transform_v1 = TransformCamera(v1 , cam);
+
+
+            int x0 = (transform_v0.x  / transform_v0.z) * scale + center_x; 
+            int y0 = -(transform_v0.y / transform_v0.z) * scale + center_y;
+            int x1 = (transform_v1.x  / transform_v1.z) * scale + center_x; 
+            int y1 = -(transform_v1.y / transform_v1.z) * scale + center_y;
 
 
             SDL_RenderDrawLine(Renderer, x0 ,y0 , x1 , y1);
@@ -80,7 +84,7 @@ void RenderWireFrame(const Mesh *model){
 
 
 
-void RenderWireVertrix(const Mesh *model){
+void RenderWireVertrix(const Mesh *model, Camera cam){
 
      SDL_SetRenderDrawColor(Renderer, 255, 255, 255, 255); // line color is white 
 
@@ -95,10 +99,14 @@ void RenderWireVertrix(const Mesh *model){
             Vec3 v0 = model->vertices[idx0];
             Vec3 v1 = model->vertices[idx1];
 
-            int x0 = (v0.x  / v0.z) * scale + center_x; 
-            int y0 = -(v0.y / v0.z) * scale + center_y;
-            int x1 = (v1.x  / v1.z) * scale + center_x; 
-            int y1 = -(v1.y / v1.z) * scale + center_y;
+            Vec3 transform_v0 = TransformCamera(v0 , cam); 
+            Vec3 transform_v1 = TransformCamera(v1 , cam);
+
+
+            int x0 = (transform_v0.x  / transform_v0.z) * scale + center_x; 
+            int y0 = -(transform_v0.y / transform_v0.z) * scale + center_y;
+            int x1 = (transform_v1.x  / transform_v1.z) * scale + center_x; 
+            int y1 = -(transform_v1.y / transform_v1.z) * scale + center_y;
 
 
             SDL_RenderDrawLine(Renderer, x0 ,y0 , x1 , y1);
@@ -111,8 +119,13 @@ void RenderWireVertrix(const Mesh *model){
 
     for(int i = 0; i < model->Num_vertex; i++){
         Vec3 v = model->vertices[i];
-        int x = (v.x / v.z) * scale + center_x; 
-        int y = -(v.y / v.z) * scale + center_y;
+        Vec3 transform = TransformCamera(v , cam);
+
+        int x = (transform.x / transform.z) * scale + center_x; 
+        int y = -(transform.y / transform.z) * scale + center_y;
+
+
+
         //SDL_RenderDrawPoint(Renderer, x, y);
         // SDL_Rect dot = {x-2 , y-2 , 5, 5}; // 5x5 red square
         // SDL_RenderFillRect(Renderer, &dot);
