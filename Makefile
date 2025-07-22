@@ -32,7 +32,7 @@ CFLAGS = -Wall -Wextra -I/opt/homebrew/include/SDL2
 LDFLAGS = -L/opt/homebrew/lib -lSDL2
 
 # Source files
-SRC = src/main.c src/file_finder.c src/vector.c src/mesh.c src/display.c
+SRC = src/main.c src/file_finder.c src/vector.c src/mesh.c src/display.c src/camera.c
 
 # Output binary
 TARGET = ./bin/main
