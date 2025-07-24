@@ -11,6 +11,8 @@ typedef struct{
 }Camera; 
 
 Vec3 TransformCamera(Vec3 vertex, Camera cam);
+Vec3 GetForwardVector(Camera cam);
+Vec3 GetRightVector(Camera cam);
 
 
 

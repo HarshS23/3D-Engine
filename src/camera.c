@@ -40,3 +40,15 @@ Vec3 TransformCamera(Vec3 vertex, Camera cam){
     
 
 }
+
+
+Vec3 GetForwardVector(Camera cam){
+    Vec3 forward; 
+    forward.x = cosf(cam.pitch) * sinf(cam.yaw);
+    forward.y = sinf(cam.pitch); 
+    forward.z = cosf(cam.pitch) * cosf(cam.yaw);
+    return normalizeVec3(forward);
+}
+
+
+Vec3 GetRightVector(Camera cam);
