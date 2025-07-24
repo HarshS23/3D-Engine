@@ -51,4 +51,8 @@ Vec3 GetForwardVector(Camera cam){
 }
 
 
-Vec3 GetRightVector(Camera cam);
+Vec3 GetRightVector(Camera cam){
+    Vec3 forward = GetForwardVector(cam);
+    Vec3 up = {0,0,0}; 
+    return normalizeVec3(crossVec3(forward, up));
+}
