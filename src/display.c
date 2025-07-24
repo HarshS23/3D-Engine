@@ -126,6 +126,8 @@ void RenderWireVertrix(const Mesh *model, Camera cam){
         Vec3 v = model->vertices[i];
         Vec3 transform = TransformCamera(v , cam);
 
+        if(transform.z <= 0 ) continue;
+
         int x = (transform.x / transform.z) * scale + center_x; 
         int y = -(transform.y / transform.z) * scale + center_y;
 
