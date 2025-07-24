@@ -57,8 +57,13 @@ int main(){
 
                 if(event.key.keysym.sym == SDLK_LEFT) cam.yaw -= 0.1f; // rotate left 
                 if(event.key.keysym.sym == SDLK_RIGHT) cam.yaw += 0.1f; // rotate right 
+
+
                 if(event.key.keysym.sym == SDLK_UP) cam.pitch += 0.1f; // rotate up 
                 if(event.key.keysym.sym == SDLK_DOWN) cam.pitch -= 0.1f; // rotate down 
+
+                if(cam.pitch > 1.5f) cam.pitch = 1.5f; 
+                if(cam.pitch < -1.5f) cam.pitch = -1.5f;
             }
         }
 
