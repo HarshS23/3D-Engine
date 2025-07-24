@@ -52,7 +52,7 @@ Vec3 GetForwardVector(Camera cam){
 
 
 Vec3 GetRightVector(Camera cam){
-    Vec3 up = {0.0f,0.0f,0.0f}; // world up 
+    Vec3 up = {0.0f,1.0f,0.0f}; // world up 
     Vec3 forward = GetForwardVector(cam);
     Vec3 right = crossVec3(up, forward); // up x forward (up cross forward)
     return normalizeVec3(right);
