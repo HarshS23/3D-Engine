@@ -46,11 +46,14 @@ int main(){
 
 
                 // camera movement 
+                Vec3 forward = GetForwardVector(cam);
+                Vec3 right = GetRightVector(cam);
 
-                if(event.key.keysym.sym == SDLK_w) cam.postion.z += 0.1f; // forward 
-                if(event.key.keysym.sym == SDLK_s) cam.postion.z -= 0.1f; // backwards 
-                if(event.key.keysym.sym == SDLK_a) cam.postion.x -= 0.1f; // left 
-                if(event.key.keysym.sym == SDLK_d) cam.postion.x += 0.1f; // right 
+
+                if(event.key.keysym.sym == SDLK_w) cam.postion = addVec3(cam.postion, scalVec3(forward, 0.1f)); // forwards
+                if(event.key.keysym.sym == SDLK_s) cam.postion = subVec3(cam.postion, scalVec3(forward, 0.1f)); // backwards 
+                if(event.key.keysym.sym == SDLK_a) cam.postion = subVec3(cam.postion, scalVec3(right, 0.1f)); // left 
+                if(event.key.keysym.sym == SDLK_d) cam.postion = addVec3(cam.postion, scalVec3(right, 0.1f)); // right 
 
                 if(event.key.keysym.sym == SDLK_LEFT) cam.yaw -= 0.1f; // rotate left 
                 if(event.key.keysym.sym == SDLK_RIGHT) cam.yaw += 0.1f; // rotate right 
