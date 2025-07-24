@@ -68,6 +68,9 @@ void RenderWireFrame(const Mesh *model, Camera cam){
             Vec3 transform_v0 = TransformCamera(v0 , cam); 
             Vec3 transform_v1 = TransformCamera(v1 , cam);
 
+            if(transform_v0.z <= 0 || transform_v1.z <= 0) continue;
+
+
 
             int x0 = (transform_v0.x  / transform_v0.z) * scale + center_x; 
             int y0 = -(transform_v0.y / transform_v0.z) * scale + center_y;
@@ -101,6 +104,8 @@ void RenderWireVertrix(const Mesh *model, Camera cam){
 
             Vec3 transform_v0 = TransformCamera(v0 , cam); 
             Vec3 transform_v1 = TransformCamera(v1 , cam);
+
+            if(transform_v0.z <= 0 || transform_v1.z <= 0) continue;
 
 
             int x0 = (transform_v0.x  / transform_v0.z) * scale + center_x; 
