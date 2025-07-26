@@ -25,7 +25,8 @@ int main(){
     
     model = LoadMeshFromOBJ(FullPath); // accessing the model.obj file 
     
-    init_display(1080, 900);
+    init_display(1080,900);
+
     SDL_Event event; 
 
     int running = 1; 
@@ -68,7 +69,7 @@ int main(){
                 // render modes
                 if(event.key.keysym.sym == SDLK_1) render_mode = 1; 
                 if(event.key.keysym.sym == SDLK_2) render_mode = 2;
-
+                if(event.key.keysym.sym == SDLK_3) render_mode = 3;
                 // reset option
                 if(event.key.keysym.sym == SDLK_r){
                     cam.postion = (Vec3){0.0f, 0.0f, 1.5f}; 
@@ -78,6 +79,9 @@ int main(){
             }
 
         }
+
+
+
 
         clear_display();
 
