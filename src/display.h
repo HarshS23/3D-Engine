@@ -6,6 +6,7 @@
 #include "mesh.h"
 #include "vector.h"
 #include "camera.h"
+#include "triangle.h"
 
 int initlizeWindow(void);
 void init_display(int width, int height); 
@@ -17,6 +18,7 @@ void RenderWireVertrix(const Mesh *model, Camera cam);
 void present_display(void); 
 void shutdown(void);
 
+void RenderFilled(const Mesh *model, Camera cam);
 
 
 
