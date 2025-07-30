@@ -11,7 +11,7 @@ char** list_asset_files(const char* folder){
          
     }
 
-    printf("Avaliable object files: \n"); 
+    printf("\nAvaliable object files: \n\n"); 
 
     struct dirent *entry;
     char** filename = NULL;
@@ -47,19 +47,21 @@ const char *select_file(const char** filename){
         count++;
     }
 
-    for(int i = 0; i < count; i++){
-        printf("filename[%i]: %s\n", i , filename[i]);
-    }
 
     char input[255];
     while(1){
-        printf("please enter which file you'd like to render: ");
+        printf("\nplease enter which file you'd like to render: ");
         scanf("%255s", input);
 
         for(int i = 0; i < count; i++){
+
             if(strcmp(input, filename[i]) == 0){
                 //printf("HERE IS THE SELECTED INTPUT: %s\n", filename[i]);
                 return filename[i];
+            }
+
+            if(strcmp(input ,"quit") == 0){
+                exit(EXIT_SUCCESS);
             }
         }
         printf("No match was found, please try again!\n\n");
