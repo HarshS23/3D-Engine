@@ -92,6 +92,10 @@ int main(){
         if(render_mode == 2){
             RenderWireVertrix(&model, cam);
         }
+        
+        if(render_mode == 3){
+            RenderFilled(&model, cam);
+        }
 
         present_display();
 
