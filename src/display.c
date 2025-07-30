@@ -169,7 +169,12 @@ void RenderFilled(const Mesh *model, Camera cam){
         int y2 = -(v2.y / v2.z) * scale + center_y;
 
         filledTriangle(Renderer, x0, y0, x1, y1, x2, y2);
+        printf("Rendering filled triangle mode...\n");
     }
+
+
+    //printf("Rendering filled triangle mode...\n");
+
 
 }
 
