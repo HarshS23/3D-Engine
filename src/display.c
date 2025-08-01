@@ -169,14 +169,52 @@ void RenderFilled(const Mesh *model, Camera cam){
         int y2 = -(v2.y / v2.z) * scale + center_y;
 
         filledTriangle(Renderer, x0, y0, x1, y1, x2, y2);
-        printf("Rendering filled triangle mode...\n");
+        //printf("Rendering filled triangle mode...\n");
+    }
+
+}
+
+
+void RenderFilledVertex(const Mesh *model, Camera cam){
+    SDL_SetRenderDrawColor(Renderer, 200, 200, 200, 255); 
+    for(int i = 0; i < model->Num_face; i++){
+        Face face = model->face[i];
+        Vec3 v0 = TransformCamera(model->vertices[face.v[0]], cam);
+        Vec3 v1 = TransformCamera(model->vertices[face.v[1]], cam);
+        Vec3 v2 = TransformCamera(model->vertices[face.v[2]], cam);
+
+        if(v0.z <= 0 || v1.z <=0 || v2.z <= 0) continue; 
+
+        int x0 = (v0.x / v0.z) * scale + center_x;
+        int y0 = -(v0.y / v0.z) * scale + center_y;
+        int x1 = (v1.x / v1.z) * scale + center_x;
+        int y1 = -(v1.y / v1.z) * scale + center_y;
+        int x2 = (v2.x / v2.z) * scale + center_x;
+        int y2 = -(v2.y / v2.z) * scale + center_y;
+
+        filledTriangle(Renderer, x0, y0, x1, y1, x2, y2);
+        //printf("Rendering filled triangle mode...\n");
     }
 
 
-    //printf("Rendering filled triangle mode...\n");
+    SDL_SetRenderDrawColor(Renderer, 255, 0 , 0 ,255); // this is red 
 
+    for(int i = 0; i < model->Num_vertex; i++){
+        Vec3 v = model->vertices[i];
+        Vec3 transform = TransformCamera(v , cam);
+
+        if(transform.z <= 0 ) continue;
+
+        int x = (transform.x / transform.z) * scale + center_x; 
+        int y = -(transform.y / transform.z) * scale + center_y;
+
+        DrawCircle(Renderer, x, y, 5);
+    }
 
 }
+
+
+
 
 
 
