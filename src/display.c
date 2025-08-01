@@ -85,11 +85,23 @@ void RenderWireFrame(const Mesh *model, Camera cam){
     }
 }
 
+void DrawLinePickColor(const Mesh *model, Camera cam, int r , int g, int b){
+
+    if ((r < 0) || (r > 255)){
+        perror("Color is not within the index of 0 < r < 255: (display.c)\n"); 
+        exit(EXIT_FAILURE);
+    }
+     if ((g < 0) || (g > 255)){
+        perror("Color is not within the index of 0 < g < 255: (display.c)\n"); 
+        exit(EXIT_FAILURE);
+    }
+     if ((b < 0) || (b > 255)){
+        perror("Color is not within the index of 0 < b < 255: (display.c)\n"); 
+        exit(EXIT_FAILURE);
+    }
 
 
-void RenderWireVertrix(const Mesh *model, Camera cam){
-
-     SDL_SetRenderDrawColor(Renderer, 255, 255, 255, 255); // line color is white 
+    SDL_SetRenderDrawColor(Renderer, r, g, b, 255); // line color is white 
 
     for(int i = 0; i < model->Num_face; i++){
         Face face = model->face[i]; 
@@ -118,7 +130,10 @@ void RenderWireVertrix(const Mesh *model, Camera cam){
         }
     }
 
-    // vertices will be red 
+}
+
+void RenderWireVertrix(const Mesh *model, Camera cam){
+    DrawLinePickColor(model, cam, 255 , 255, 255); 
 
     SDL_SetRenderDrawColor(Renderer, 255, 0 , 0 ,255); // this is red 
 
@@ -174,8 +189,8 @@ void RenderFilled(const Mesh *model, Camera cam){
 
 }
 
-// idkkalsdj;fk
 void RenderFilledVertex(const Mesh *model, Camera cam){
+
     SDL_SetRenderDrawColor(Renderer, 200, 200, 200, 255); 
     for(int i = 0; i < model->Num_face; i++){
         Face face = model->face[i];
@@ -196,6 +211,10 @@ void RenderFilledVertex(const Mesh *model, Camera cam){
         //printf("Rendering filled triangle mode...\n");
     }
 
+    //RenderWireVertrix(model, cam);
+    DrawLinePickColor(model, cam, 0 , 0, 0); 
+
+    //SDL_SetRenderDrawColor(Renderer, 0, 0, 0, 255); // line color is white 
 
     SDL_SetRenderDrawColor(Renderer, 255, 0 , 0 ,255); // this is red 
 
