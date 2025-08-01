@@ -174,7 +174,7 @@ void RenderFilled(const Mesh *model, Camera cam){
 
 }
 
-
+// idkkalsdj;fk
 void RenderFilledVertex(const Mesh *model, Camera cam){
     SDL_SetRenderDrawColor(Renderer, 200, 200, 200, 255); 
     for(int i = 0; i < model->Num_face; i++){
