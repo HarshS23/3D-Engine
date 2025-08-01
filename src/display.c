@@ -2,6 +2,8 @@
 
 
 
+
+
 static SDL_Window *Window = NULL; 
 static SDL_Renderer *Renderer = NULL; 
 static int center_x, center_y; 
@@ -80,7 +82,8 @@ void DrawLinePickColor(const Mesh *model, Camera cam, int r , int g, int b){
             Vec3 transform_v0 = TransformCamera(v0 , cam); 
             Vec3 transform_v1 = TransformCamera(v1 , cam);
 
-            if(transform_v0.z <= 0 || transform_v1.z <= 0) continue;
+            if(transform_v0.z <= 0.01f || transform_v1.z <= 0.01f) continue;
+
 
 
             int x0 = (transform_v0.x  / transform_v0.z) * scale + center_x; 
@@ -176,21 +179,29 @@ void RenderFilledVertex(const Mesh *model, Camera cam){
     //RenderWireVertrix(model, cam);
     DrawLinePickColor(model, cam, 0 , 0, 0); 
 
-    //SDL_SetRenderDrawColor(Renderer, 0, 0, 0, 255); // line color is white 
-
     SDL_SetRenderDrawColor(Renderer, 255, 0 , 0 ,255); // this is red 
 
+    
+    Vec3 *transformed = malloc(model->Num_vertex * sizeof(Vec3));
     for(int i = 0; i < model->Num_vertex; i++){
         Vec3 v = model->vertices[i];
-        Vec3 transform = TransformCamera(v , cam);
+        transformed[i] = TransformCamera(v, cam);
+    }
+    // now we render using that temp/ transformed i 
 
-        if(transform.z <= 0 ) continue;
+    for(int i = 0; i < model->Num_vertex; i++){
+        Vec3 t = transformed[i];
 
-        int x = (transform.x / transform.z) * scale + center_x; 
-        int y = -(transform.y / transform.z) * scale + center_y;
+        if(t.z <= 0.1f) continue;
+
+        int x = (t.x / t.z) * scale + center_x; 
+        int y = -(t.y / t.z) * scale + center_y;
 
         DrawCircle(Renderer, x, y, 5);
+
     }
+
+    free(transformed);
 
 }
 
