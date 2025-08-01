@@ -153,15 +153,8 @@ void RenderWireVertrix(const Mesh *model, Camera cam){
 
 void DrawCircle(SDL_Renderer *Renderer, int x, int y, int r){
 
-    for(int i = 0; i < r; i++){
-        for(int j = 0; j < r; j++){
-            int dx = r - i; 
-            int dy = r - j;
-            if((dx*dx + dy*dy) <= (r*r)){
-                SDL_RenderDrawPoint(Renderer, x + dx , y + dy);
-            }
-        }
-    }
+    SDL_Rect dot = {x-2, y - 2, 4,4}; 
+    SDL_RenderFillRect(Renderer, &dot);
 }
 
 
