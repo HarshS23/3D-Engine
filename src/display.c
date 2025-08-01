@@ -173,15 +173,12 @@ void RenderFilledVertex(const Mesh *model, Camera cam){
         int y2 = -(v2.y / v2.z) * scale + center_y;
 
         filledTriangle(Renderer, x0, y0, x1, y1, x2, y2);
-        //printf("Rendering filled triangle mode...\n");
     }
 
-    //RenderWireVertrix(model, cam);
     DrawLinePickColor(model, cam, 0 , 0, 0); 
 
     SDL_SetRenderDrawColor(Renderer, 255, 0 , 0 ,255); // this is red 
 
-    
     Vec3 *transformed = malloc(model->Num_vertex * sizeof(Vec3));
     for(int i = 0; i < model->Num_vertex; i++){
         Vec3 v = model->vertices[i];
