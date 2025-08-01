@@ -41,6 +41,7 @@ int main(){
             }
             
             const Uint8 *keys = SDL_GetKeyboardState(NULL);
+            
              // camera movement 
             Vec3 forward = GetForwardVector(cam);
             Vec3 right = GetRightVector(cam);
