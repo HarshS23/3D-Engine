@@ -48,43 +48,6 @@ void clear_display(void){
 }
 
 
-
-
-void RenderWireFrame(const Mesh *model, Camera cam){
-
-    SDL_SetRenderDrawColor(Renderer, 255, 255, 255, 255); // line color is white 
-
-    for(int i = 0; i < model->Num_face; i++){
-        Face face = model->face[i]; 
-
-
-        for(int edge = 0; edge < 3; edge++){
-            int idx0 = face.v[edge]; 
-            int idx1 = face.v[(edge + 1) % 3];
-            
-            Vec3 v0 = model->vertices[idx0];
-            Vec3 v1 = model->vertices[idx1];
-
-            Vec3 transform_v0 = TransformCamera(v0 , cam); 
-            Vec3 transform_v1 = TransformCamera(v1 , cam);
-
-            if(transform_v0.z <= 0 || transform_v1.z <= 0) continue;
-
-
-
-            int x0 = (transform_v0.x  / transform_v0.z) * scale + center_x; 
-            int y0 = -(transform_v0.y / transform_v0.z) * scale + center_y;
-            int x1 = (transform_v1.x  / transform_v1.z) * scale + center_x; 
-            int y1 = -(transform_v1.y / transform_v1.z) * scale + center_y;
-
-
-            SDL_RenderDrawLine(Renderer, x0 ,y0 , x1 , y1);
-
-
-        }
-    }
-}
-
 void DrawLinePickColor(const Mesh *model, Camera cam, int r , int g, int b){
 
     if ((r < 0) || (r > 255)){
@@ -129,6 +92,12 @@ void DrawLinePickColor(const Mesh *model, Camera cam, int r , int g, int b){
             SDL_RenderDrawLine(Renderer, x0 ,y0 , x1 , y1);
         }
     }
+
+}
+
+void RenderWireFrame(const Mesh *model, Camera cam){
+
+    DrawLinePickColor(model, cam, 255 , 255, 255); 
 
 }
 

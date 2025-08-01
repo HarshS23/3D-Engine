@@ -12,6 +12,7 @@ int initlizeWindow(void);
 void init_display(int width, int height); 
 void clear_display(void);
 void DrawCircle(SDL_Renderer *Renderer, int x, int y, int r);
+void DrawLinePickColor(const Mesh *model, Camera cam, int r , int g, int b);
 
 void RenderWireFrame(const Mesh *model, Camera cam);
 void RenderWireVertrix(const Mesh *model, Camera cam);
