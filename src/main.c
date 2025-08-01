@@ -70,6 +70,7 @@ int main(){
                 if(event.key.keysym.sym == SDLK_1) render_mode = 1; 
                 if(event.key.keysym.sym == SDLK_2) render_mode = 2;
                 if(event.key.keysym.sym == SDLK_3) render_mode = 3;
+                if(event.key.keysym.sym == SDLK_4) render_mode = 4;
                 // reset option
                 if(event.key.keysym.sym == SDLK_r){
                     cam.postion = (Vec3){0.0f, 0.0f, 1.5f}; 
@@ -97,6 +98,9 @@ int main(){
             RenderFilled(&model, cam);
         }
 
+        if(render_mode == 4){
+            RenderFilledVertex(&model, cam);
+        }
         present_display();
 
     }
