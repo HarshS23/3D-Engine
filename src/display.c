@@ -1,5 +1,10 @@
 #include "display.h"
+#include "clipping.h"
 
+#define NEAR_PLANE 0.1f
+
+#define WIDTH 1089 
+#define HEIGHT 900 
 
 
 
@@ -134,25 +139,42 @@ void DrawCircle(SDL_Renderer *Renderer, int x, int y, int r){
 void RenderFilled(const Mesh *model, Camera cam){
 
 
-    
     SDL_SetRenderDrawColor(Renderer, 200, 200, 200, 255); 
     for(int i = 0; i < model->Num_face; i++){
         Face face = model->face[i];
+        
         Vec3 v0 = TransformCamera(model->vertices[face.v[0]], cam);
         Vec3 v1 = TransformCamera(model->vertices[face.v[1]], cam);
         Vec3 v2 = TransformCamera(model->vertices[face.v[2]], cam);
 
-        if(v0.z <= 0 || v1.z <=0 || v2.z <= 0) continue; 
+        //if(v0.z <= 0 || v1.z <=0 || v2.z <= 0) continue; 
 
-        int x0 = (v0.x / v0.z) * scale + center_x;
-        int y0 = -(v0.y / v0.z) * scale + center_y;
-        int x1 = (v1.x / v1.z) * scale + center_x;
-        int y1 = -(v1.y / v1.z) * scale + center_y;
-        int x2 = (v2.x / v2.z) * scale + center_x;
-        int y2 = -(v2.y / v2.z) * scale + center_y;
 
-        filledTriangle(Renderer, x0, y0, x1, y1, x2, y2);
-        //printf("Rendering filled triangle mode...\n");
+        Vec3 clipped[2][3]; 
+        int num_out = 1;
+        // onlu clip if a vertex is behind the near plane
+        if(v0.z < NEAR_PLANE || v1.z < NEAR_PLANE || v2.z < NEAR_PLANE){
+            num_out = ClipTriangleNearPlane(v0,v1, v2, clipped, NEAR_PLANE);
+            if(num_out == 0) continue;   
+        }else{
+            clipped[0][0] = v0;
+            clipped[0][1] = v1; 
+            clipped[0][2] = v2;
+        }
+
+        for(int i = 0; i < num_out; i++){
+            Vec3 cv0 = clipped[i][0];
+            Vec3 cv1 = clipped[i][1];
+            Vec3 cv2 = clipped[i][2];
+
+            int x0 = (cv0.x / cv0.z) * scale + center_x;
+            int y0 = -(cv0.y / cv0.z) * scale + center_y;
+            int x1 = (cv1.x / cv1.z) * scale + center_x;
+            int y1 = -(cv1.y / cv1.z) * scale + center_y;
+            int x2 = (cv2.x / cv2.z) * scale + center_x;
+            int y2 = -(cv2.y / cv2.z) * scale + center_y;
+            filledTriangle(Renderer, x0, y0, x1, y1, x2, y2);
+        }
     }
 
 }
