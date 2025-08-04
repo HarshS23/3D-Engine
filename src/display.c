@@ -132,6 +132,9 @@ void DrawCircle(SDL_Renderer *Renderer, int x, int y, int r){
 
 
 void RenderFilled(const Mesh *model, Camera cam){
+
+
+    
     SDL_SetRenderDrawColor(Renderer, 200, 200, 200, 255); 
     for(int i = 0; i < model->Num_face; i++){
         Face face = model->face[i];
