@@ -46,7 +46,7 @@ int ClipTriangleNearPlane(Vec3 v0, Vec3 v1, Vec3 v2, Vec3 out[2][3], float nearZ
         Vec3 a = inside[0];
         Vec3 b = inside[1];
         Vec3 c = lerp_vec3(inside[0], outside[0], (nearZ - inside[0].z)/(outside[0].z - inside[0].z));
-        Vec3 d = lerp_vec3(inside[1], outside[0], (nearZ - inside[0].z)/(outside[1].z - inside[0].z));
+        Vec3 d = lerp_vec3(inside[1], outside[0], (nearZ - inside[1].z)/(outside[0].z - inside[1].z));
 
         out[0][0] = a; out[0][1] = b; out[0][2] = c;
         out[1][0] = b; out[1][1] = d; out[1][2] = c;
