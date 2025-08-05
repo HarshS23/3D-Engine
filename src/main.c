@@ -12,6 +12,7 @@ Camera cam;
 
 
 
+
 int main(){
 
     cam.postion = (Vec3){0.0f, 0.0f, 3.0f};
