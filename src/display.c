@@ -13,6 +13,7 @@ static SDL_Window *Window = NULL;
 static SDL_Renderer *Renderer = NULL; 
 static int center_x, center_y; 
 static float scale = 1000.0f; 
+static Light light = {.direction = {-1.0f,-1.0f,-1.0f}, .intensity = 1.0f};
 
 
 
@@ -139,7 +140,8 @@ void DrawCircle(SDL_Renderer *Renderer, int x, int y, int r){
 void RenderFilled(const Mesh *model, Camera cam){
 
 
-    SDL_SetRenderDrawColor(Renderer, 200, 200, 200, 255); 
+    //SDL_SetRenderDrawColor(Renderer, 200, 200, 200, 255); 
+
     for(int i = 0; i < model->Num_face; i++){
         Face face = model->face[i];
         
@@ -173,6 +175,26 @@ void RenderFilled(const Mesh *model, Camera cam){
             int y1 = -(cv1.y / cv1.z) * scale + center_y;
             int x2 = (cv2.x / cv2.z) * scale + center_x;
             int y2 = -(cv2.y / cv2.z) * scale + center_y;
+
+            Vec3 normal = ComputeFaceNormal(cv0 , cv1, cv2);
+
+            if(dotVec3(normal, cv0) > 0 ){
+                normal = scalVec3(normal, 2.0f);
+            }
+
+            float RawDot = dotVec3(normalizeVec3(normal), normalizeVec3(light.direction));
+
+            float intensity = 0.1f + fmaxf(0.0f, RawDot) * 0.9f;
+
+
+            //float intensity = ComputeLightIntensity(normal, light);
+
+
+            if(intensity > 1.0f) intensity = 1.0f;
+
+            Uint8 shade = (Uint8)(intensity * 255.0f);
+            SDL_SetRenderDrawColor(Renderer, shade, shade, shade, 255);
+
             filledTriangle(Renderer, x0, y0, x1, y1, x2, y2);
         }
     }

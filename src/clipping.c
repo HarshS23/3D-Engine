@@ -53,11 +53,6 @@ int ClipTriangleNearPlane(Vec3 v0, Vec3 v1, Vec3 v2, Vec3 out[2][3], float nearZ
         return 2;
     }
 
-    return 0 , printf("ERROR CHECK(CLIPPING.C)"); // this should never run
-
-
-
-
-
+    return 0;// this should never run
 
 }
