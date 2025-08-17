@@ -41,6 +41,7 @@ Focus: **clarity + performance** on the CPU — no OpenGL/DirectX required.
   <img src="OP_1.png" width="45%" alt="Clean wireframe"/>
 </p>
 
+
 ## Features
 - OBJ loader (verts/uvs/normals/faces)
 - Draw modes: **Wireframe**, **Wireframe + vertices**, **Filled**, **Filled+wire**, (**Textured** WIP)
