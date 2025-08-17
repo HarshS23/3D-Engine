@@ -5,8 +5,8 @@ A lightweight, educational 3D engine written in C (CPU rasterizer).
 Focus: **clarity + performance** on the CPU — no OpenGL/DirectX required.
 
 <p align="center">
-  <img 3D-Renderer=OP_4.png" width="45%" alt="Wireframe with vertices"/>
-  <img 3D-Renderer=OP_1.png" width="45%" alt="Clean wireframe"/>
+  <img 3D-Renderer=OP_4.png width="45%" alt="Wireframe with vertices"/>
+  <img 3D-Renderer=OP_1.png width="45%" alt="Clean wireframe"/>
 </p>
 
 ## Features
