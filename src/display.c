@@ -13,7 +13,9 @@ static SDL_Window *Window = NULL;
 static SDL_Renderer *Renderer = NULL; 
 static int center_x, center_y; 
 static float scale = 1000.0f; 
-static Light light = {.direction = {-1.0f,-1.0f,-1.0f}, .intensity = 1.0f};
+static Light light = { .direction = {0.0f, 0.0f, -1.0f}, .intensity = 1.0f };
+
+
 
 
 
@@ -178,13 +180,13 @@ void RenderFilled(const Mesh *model, Camera cam){
 
             Vec3 normal = ComputeFaceNormal(cv0 , cv1, cv2);
 
-            if(dotVec3(normal, cv0) > 0 ){
-                normal = scalVec3(normal, 2.0f);
-            }
+            // TEMP: Flip the normal just to test if it's facing wrong
+            normal = scalVec3(normal, -1.0f);
 
-            float RawDot = dotVec3(normalizeVec3(normal), normalizeVec3(light.direction));
+            float dot = dotVec3(normalizeVec3(normal), normalizeVec3(light.direction));
+            float intensity = fmaxf(0.0f, dot);
 
-            float intensity = 0.1f + fmaxf(0.0f, RawDot) * 0.9f;
+
 
 
             //float intensity = ComputeLightIntensity(normal, light);

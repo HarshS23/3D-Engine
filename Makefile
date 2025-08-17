@@ -52,3 +52,38 @@ run: build
 clean:
 	rm -f $(TARGET)
 
+
+
+
+# # Compiler and flags
+# CC = riscv64-unknown-elf-gcc
+# CFLAGS = -Wall -Wextra -I/opt/homebrew/include/SDL2 -std=c99
+# LDFLAGS = -L/opt/homebrew/lib -lSDL2
+
+# # Source files
+# SRC = src/main.c src/file_finder.c src/vector.c src/mesh.c src/display.c src/camera.c src/triangle.c src/clipping.c src/light.c
+
+# # Output binary
+# TARGET = ./bin/main
+
+# # Default target
+# all: build
+
+# # Build and run
+# build:
+# 	$(CC) $(CFLAGS) $(SRC) $(LDFLAGS) -o $(TARGET)
+# 	./$(TARGET)
+
+# run: build
+# 	./$(TARGET)
+
+# # Clean binary and assembly files
+# clean:
+# 	rm -f $(TARGET) bin/*.s
+
+# # Generate RISC-V assembly for all source files
+# asm:
+# 	mkdir -p bin
+# 	for file in $(SRC); do \
+# 		$(CC) $(CFLAGS) -S $$file -o bin/$$(basename $$file .c).s -march=rv64gc -mabi=lp64; \
+# 	done
