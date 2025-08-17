@@ -85,12 +85,13 @@ Mesh LoadMeshFromOBJ(const char *filename){
             continue;
         }
 
-
         for(int i = 0; i < model.Num_vertex; i++){
             model.vertices[i].z += 0.07;
+            printf("MODEL.z:  %f\n ", model.vertices[i].z);
         }
-
     }
+
+
 
     fclose(fread);
 
