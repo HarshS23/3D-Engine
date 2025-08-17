@@ -13,7 +13,7 @@ static SDL_Window *Window = NULL;
 static SDL_Renderer *Renderer = NULL; 
 static int center_x, center_y; 
 static float scale = 1000.0f; 
-static Light light = { .direction = {0.0f, 0.0f, -1.0f}, .intensity = 1.0f };
+//static Light light = { .direction = {0.0f, 0.0f, 1.0f}, .intensity = 1.0f };
 
 
 
@@ -142,7 +142,7 @@ void DrawCircle(SDL_Renderer *Renderer, int x, int y, int r){
 void RenderFilled(const Mesh *model, Camera cam){
 
 
-    //SDL_SetRenderDrawColor(Renderer, 200, 200, 200, 255); 
+    SDL_SetRenderDrawColor(Renderer, 200, 200, 200, 255); 
 
     for(int i = 0; i < model->Num_face; i++){
         Face face = model->face[i];
@@ -178,24 +178,24 @@ void RenderFilled(const Mesh *model, Camera cam){
             int x2 = (cv2.x / cv2.z) * scale + center_x;
             int y2 = -(cv2.y / cv2.z) * scale + center_y;
 
-            Vec3 normal = ComputeFaceNormal(cv0 , cv1, cv2);
+            // Vec3 normal = ComputeFaceNormal(cv0 , cv1, cv2);
 
-            // TEMP: Flip the normal just to test if it's facing wrong
-            normal = scalVec3(normal, -1.0f);
+            // // TEMP: Flip the normal just to test if it's facing wrong
+            // //normal = scalVec3(normal, -1.0f);
 
-            float dot = dotVec3(normalizeVec3(normal), normalizeVec3(light.direction));
-            float intensity = fmaxf(0.0f, dot);
-
-
+            // float dot = dotVec3(normalizeVec3(normal), normalizeVec3(light.direction));
+            // float intensity = fmaxf(0.0f, dot);
 
 
-            //float intensity = ComputeLightIntensity(normal, light);
 
 
-            if(intensity > 1.0f) intensity = 1.0f;
+            // //float intensity = ComputeLightIntensity(normal, light);
 
-            Uint8 shade = (Uint8)(intensity * 255.0f);
-            SDL_SetRenderDrawColor(Renderer, shade, shade, shade, 255);
+
+            // if(intensity > 1.0f) intensity = 1.0f;
+
+            // Uint8 shade = (Uint8)(intensity * 255.0f);
+            // SDL_SetRenderDrawColor(Renderer, shade, shade, shade, 255);
 
             filledTriangle(Renderer, x0, y0, x1, y1, x2, y2);
         }
