@@ -8,7 +8,7 @@
 #include "mesh.h"
 #include "vector.h"
 #include "camera.h"
-#include "light.h"
+
 
 void free_arrays();
 
