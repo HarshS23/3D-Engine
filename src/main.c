@@ -89,18 +89,22 @@ int main(){
         clear_display();
 
         if(render_mode == 1){
+            UpdateTransformedVertices(&model, cam);
             RenderWireFrame(&model, cam);
         }
 
         if(render_mode == 2){
+            UpdateTransformedVertices(&model, cam);
             RenderWireVertrix(&model, cam);
         }
         
         if(render_mode == 3){
+            UpdateTransformedVertices(&model, cam);
             RenderFilled(&model, cam);
         }
 
         if(render_mode == 4){
+            UpdateTransformedVertices(&model, cam);
             RenderFilledVertex(&model, cam);
         }
         present_display();

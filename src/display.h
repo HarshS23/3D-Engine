@@ -24,6 +24,8 @@ void shutdown(void);
 
 void RenderFilled(const Mesh *model, Camera cam);
 
+void UpdateTransformedVertices(const Mesh *model, Camera cam);
+
 
 
 #endif
