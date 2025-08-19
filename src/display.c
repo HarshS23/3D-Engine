@@ -11,6 +11,7 @@
 
 static SDL_Window *Window = NULL; 
 static SDL_Renderer *Renderer = NULL; 
+static Vec3 transformed_vertices[100000]; // big enough for any model
 static int center_x, center_y; 
 static float scale = 1000.0f; 
 //static Light light = { .direction = {0.0f, 0.0f, 1.0f}, .intensity = 1.0f };
@@ -19,6 +20,11 @@ static float scale = 1000.0f;
 
 
 
+void UpdateTransformedVertices(const Mesh *model, Camera cam) {
+    for (int i = 0; i < model->Num_vertex; i++) {
+        transformed_vertices[i] = TransformCamera(model->vertices[i], cam);
+    }
+}
 
 
 
@@ -50,13 +56,11 @@ void init_display(int width, int height){
     center_y = height / 2;
 }
 
-
 void clear_display(void){
 
     SDL_SetRenderDrawColor(Renderer, 0 , 0, 0 , 255);  // this is the background color
     SDL_RenderClear(Renderer);
 }
-
 
 void DrawLinePickColor(const Mesh *model, Camera cam, int r , int g, int b){
 
@@ -84,11 +88,14 @@ void DrawLinePickColor(const Mesh *model, Camera cam, int r , int g, int b){
             int idx0 = face.v[edge]; 
             int idx1 = face.v[(edge + 1) % 3];
             
-            Vec3 v0 = model->vertices[idx0];
-            Vec3 v1 = model->vertices[idx1];
+            // Vec3 v0 = model->vertices[idx0];
+            // Vec3 v1 = model->vertices[idx1];
 
-            Vec3 transform_v0 = TransformCamera(v0 , cam); 
-            Vec3 transform_v1 = TransformCamera(v1 , cam);
+            // Vec3 transform_v0 = TransformCamera(v0 , cam); 
+            // Vec3 transform_v1 = TransformCamera(v1 , cam);
+
+            Vec3 transform_v0 = transformed_vertices[idx0];
+            Vec3 transform_v1 = transformed_vertices[idx1];
 
             if(transform_v0.z <= 0.01f || transform_v1.z <= 0.01f) continue;
 
@@ -118,8 +125,11 @@ void RenderWireVertrix(const Mesh *model, Camera cam){
     SDL_SetRenderDrawColor(Renderer, 255, 0 , 0 ,255); // this is red 
 
     for(int i = 0; i < model->Num_vertex; i++){
-        Vec3 v = model->vertices[i];
-        Vec3 transform = TransformCamera(v , cam);
+        // Vec3 v = model->vertices[i];
+        // Vec3 transform = TransformCamera(v , cam);
+        
+        Vec3 transform = transformed_vertices[i];
+
 
         if(transform.z <= 0 ) continue;
 
@@ -136,8 +146,6 @@ void DrawCircle(SDL_Renderer *Renderer, int x, int y, int r){
     SDL_Rect dot = {x-2, y - 2, 4,4}; 
     SDL_RenderFillRect(Renderer, &dot);
 }
-
-
 
 void RenderFilled(const Mesh *model, Camera cam){
 
@@ -251,15 +259,9 @@ void RenderFilledVertex(const Mesh *model, Camera cam){
 
 }
 
-
-
-
-
-
 void present_display(void){
     SDL_RenderPresent(Renderer);
 }
-
 
 void shutdown(void){
     SDL_DestroyRenderer(Renderer); 
