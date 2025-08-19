@@ -16,6 +16,15 @@ static int center_x, center_y;
 static float scale = 1000.0f; 
 //static Light light = { .direction = {0.0f, 0.0f, 1.0f}, .intensity = 1.0f };
 
+// --- Local Face Normal (no light.c needed) ---
+static Vec3 ComputeFaceNormal(Vec3 v0, Vec3 v1, Vec3 v2) {
+    Vec3 edge1 = subVec3(v1, v0);
+    Vec3 edge2 = subVec3(v2, v0);
+    Vec3 normal = crossVec3(edge1, edge2);
+    return normalizeVec3(normal);
+}
+
+
 
 
 
@@ -220,6 +229,12 @@ void RenderFilledVertex(const Mesh *model, Camera cam){
         Vec3 v1 = TransformCamera(model->vertices[face.v[1]], cam);
         Vec3 v2 = TransformCamera(model->vertices[face.v[2]], cam);
 
+
+        Vec3 normal = ComputeFaceNormal(v0, v1, v2);
+        Vec3 view_dir = {0, 0, -1}; // looking forward in camera space
+        if (dotVec3(normalizeVec3(normal), view_dir) >= 0) continue;
+
+
         if(v0.z <= 0 || v1.z <=0 || v2.z <= 0) continue; 
 
         int x0 = (v0.x / v0.z) * scale + center_x;
@@ -236,15 +251,15 @@ void RenderFilledVertex(const Mesh *model, Camera cam){
 
     SDL_SetRenderDrawColor(Renderer, 255, 0 , 0 ,255); // this is red 
 
-    Vec3 *transformed = malloc(model->Num_vertex * sizeof(Vec3));
-    for(int i = 0; i < model->Num_vertex; i++){
-        Vec3 v = model->vertices[i];
-        transformed[i] = TransformCamera(v, cam);
-    }
-    // now we render using that temp/ transformed i 
+    // Vec3 *transformed = malloc(model->Num_vertex * sizeof(Vec3));
+    // for(int i = 0; i < model->Num_vertex; i++){
+    //     Vec3 v = model->vertices[i];
+    //     transformed[i] = TransformCamera(v, cam);
+    // }
+    // // now we render using that temp/ transformed i 
 
     for(int i = 0; i < model->Num_vertex; i++){
-        Vec3 t = transformed[i];
+        Vec3 t = transformed_vertices[i];
 
         if(t.z <= 0.1f) continue;
 
@@ -255,7 +270,7 @@ void RenderFilledVertex(const Mesh *model, Camera cam){
 
     }
 
-    free(transformed);
+    // free(transformed);
 
 }
 
