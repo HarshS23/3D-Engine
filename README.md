@@ -1,7 +1,7 @@
 
 # 3D Engine (CPU Rasterizer)
 
-A lightweight, 3D engine written in C (CPU rasterizer).  
+A lightweight, 3D engine written in C (CPU rasterizer), using the Left-Handed Coordinate system.  
 Focus: **clarity + performance** on the CPU — no OpenGL/DirectX required.
 
 <p align="center">
