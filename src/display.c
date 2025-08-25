@@ -172,8 +172,6 @@ void RenderFilled(const Mesh *model, Camera cam){
         Vec3 v1 = TransformCamera(model->vertices[face.v[1]], cam);
         Vec3 v2 = TransformCamera(model->vertices[face.v[2]], cam);
 
-        //if(v0.z <= 0 || v1.z <=0 || v2.z <= 0) continue; 
-
 
         Vec3 clipped[2][3]; 
         int num_out = 1;
@@ -187,10 +185,16 @@ void RenderFilled(const Mesh *model, Camera cam){
             clipped[0][2] = v2;
         }
 
-        for(int i = 0; i < num_out; i++){
-            Vec3 cv0 = clipped[i][0];
-            Vec3 cv1 = clipped[i][1];
-            Vec3 cv2 = clipped[i][2];
+        for(int j = 0; j < num_out; j++){
+            Vec3 cv0 = clipped[j][0];
+            Vec3 cv1 = clipped[j][1];
+            Vec3 cv2 = clipped[j][2];
+
+
+            if(!FaceVisible(cv0,cv1,cv2)){
+                printf("CULLED triangle %d\n", i);
+                continue;
+            }
 
             int x0 = (cv0.x / cv0.z) * scale + center_x;
             int y0 = -(cv0.y / cv0.z) * scale + center_y;

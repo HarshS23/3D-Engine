@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "file_finder.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "culling.h": "c"
     }
 }

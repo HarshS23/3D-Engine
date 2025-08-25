@@ -8,6 +8,7 @@
 #include "camera.h"
 #include "triangle.h"
 #include "light.h"
+#include "culling.h"
 
 
 int initlizeWindow(void);
