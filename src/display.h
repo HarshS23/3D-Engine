@@ -7,6 +7,7 @@
 #include "vector.h"
 #include "camera.h"
 #include "triangle.h"
+#include "light.h"
 
 
 int initlizeWindow(void);
