@@ -14,13 +14,12 @@ static SDL_Renderer *Renderer = NULL;
 static Vec3 transformed_vertices[100000]; // big enough for any model
 static int center_x, center_y; 
 static float scale = 1000.0f; 
-//static Light light = { .direction = {0.0f, 0.0f, 1.0f}, .intensity = 1.0f };
 
 // --- Local Face Normal  ---
 static Vec3 ComputeFaceNormal(Vec3 v0, Vec3 v1, Vec3 v2) {
     Vec3 edge1 = subVec3(v1, v0);
     Vec3 edge2 = subVec3(v2, v0);
-    Vec3 normal = crossVec3(edge1, edge2);
+    Vec3 normal = crossVec3(edge2, edge1);
     return normalizeVec3(normal);
 }
 
