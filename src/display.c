@@ -161,7 +161,7 @@ void RenderFilled(const Mesh *model, Camera cam){
 
     //SDL_SetRenderDrawColor(Renderer, 200, 200, 200, 255); 
     Light light = {
-        .direction = {0.0f, 0.0f, -1.0f},
+        .direction = {0.0f, 0.0f, 1.0f},
         .intensity = 1.0f
     };
 
@@ -202,8 +202,17 @@ void RenderFilled(const Mesh *model, Camera cam){
 
             // lighting calculations 
             Vec3 normal = ComputeFaceNormal(cv0, cv1, cv2);
+            Vec3 view_direc = { 0 , 0, 1};
+            if(dotVec3(normal, view_direc) < 0){
+                normal = scalVec3(normal , 1.0f);
+
+            }
+
+
+
+
             float intensity = ComputeLighting(normal,light);
-            Uint8 shade = (Uint8)(intensity * 255.0f);
+            Uint8 shade = (Uint8)(fmaxf(0.0f, fminf(intensity, 1.0f)) * 255.0f);
             SDL_SetRenderDrawColor(Renderer, shade, shade, shade, 255);
 
             filledTriangle(Renderer, x0, y0, x1, y1, x2, y2);
