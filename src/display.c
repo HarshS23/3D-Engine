@@ -16,7 +16,7 @@ static int center_x, center_y;
 static float scale = 1000.0f; 
 //static Light light = { .direction = {0.0f, 0.0f, 1.0f}, .intensity = 1.0f };
 
-// --- Local Face Normal (no light.c needed) ---
+// --- Local Face Normal  ---
 static Vec3 ComputeFaceNormal(Vec3 v0, Vec3 v1, Vec3 v2) {
     Vec3 edge1 = subVec3(v1, v0);
     Vec3 edge2 = subVec3(v2, v0);
