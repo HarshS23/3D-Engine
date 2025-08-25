@@ -7,6 +7,7 @@ Focus: **clarity + performance** on the CPU — no OpenGL/DirectX required.
 <p align="center">
   <img src="images/OP_4.png" width="45%" alt="Wireframe with vertices"/>
   <img src="images/OP_1.png" width="45%" alt="Clean wireframe"/>
+  <img src="images/OP_3.png" width="45%" alt="Filled"/>
 </p>
 
 
