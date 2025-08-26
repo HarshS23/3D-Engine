@@ -17,7 +17,7 @@ Focus: **clarity + performance** on the CPU — no OpenGL/DirectX required.
 - OBJ loader (verts/uvs/normals/faces)
 - Draw modes: **Wireframe**, **Wireframe + vertices**, **Filled**, **Filled+wire**,
 - Movable first-person camera
-- Backface culling, near-plane clipping, simple depth sort
+- Backface culling, near-plane clipping
 - Solid black background
 
 
