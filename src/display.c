@@ -15,13 +15,10 @@ static Vec3 transformed_vertices[100000]; // big enough for any model
 static int center_x, center_y; 
 static float scale = 1000.0f; 
 
-// --- Local Face Normal  ---
-static Vec3 ComputeFaceNormal(Vec3 v0, Vec3 v1, Vec3 v2) {
-    Vec3 edge1 = subVec3(v1, v0);
-    Vec3 edge2 = subVec3(v2, v0);
-    Vec3 normal = crossVec3(edge2, edge1);
-    return normalizeVec3(normal);
-}
+Light light = {
+    .direction = {0.0f, 0.0f, 1.0f},
+    .intensity = 1.0f
+};
 
 
 
@@ -157,13 +154,6 @@ void DrawCircle(SDL_Renderer *Renderer, int x, int y, int r){
 
 void RenderFilled(const Mesh *model, Camera cam){
 
-
-    //SDL_SetRenderDrawColor(Renderer, 200, 200, 200, 255); 
-    Light light = {
-        .direction = {0.0f, 0.0f, 1.0f},
-        .intensity = 1.0f
-    };
-
     for(int i = 0; i < model->Num_face; i++){
         Face face = model->face[i];
         
@@ -191,7 +181,6 @@ void RenderFilled(const Mesh *model, Camera cam){
 
 
             if(!FaceVisible(cv0,cv1,cv2)){
-                printf("CULLED triangle %d\n", i);
                 continue;
             }
 
@@ -224,59 +213,133 @@ void RenderFilled(const Mesh *model, Camera cam){
 
 }
 
-void RenderFilledVertex(const Mesh *model, Camera cam){
 
-    SDL_SetRenderDrawColor(Renderer, 200, 200, 200, 255); 
-    for(int i = 0; i < model->Num_face; i++){
-        Face face = model->face[i];
-        Vec3 v0 = TransformCamera(model->vertices[face.v[0]], cam);
-        Vec3 v1 = TransformCamera(model->vertices[face.v[1]], cam);
-        Vec3 v2 = TransformCamera(model->vertices[face.v[2]], cam);
+void RenderFilledVertex(const Mesh *model, Camera cam){ 
+    RenderFilled(model, cam); 
 
-
-        Vec3 normal = ComputeFaceNormal(v0, v1, v2);
-        Vec3 view_dir = {0, 0, -1}; // looking forward in camera space
-        if (dotVec3(normalizeVec3(normal), view_dir) >= 0) continue;
-
-
-        if(v0.z <= 0 || v1.z <=0 || v2.z <= 0) continue; 
-
-        int x0 = (v0.x / v0.z) * scale + center_x;
-        int y0 = -(v0.y / v0.z) * scale + center_y;
-        int x1 = (v1.x / v1.z) * scale + center_x;
-        int y1 = -(v1.y / v1.z) * scale + center_y;
-        int x2 = (v2.x / v2.z) * scale + center_x;
-        int y2 = -(v2.y / v2.z) * scale + center_y;
-
-        filledTriangle(Renderer, x0, y0, x1, y1, x2, y2);
-    }
-
-    DrawLinePickColor(model, cam, 0 , 0, 0); 
-
-    SDL_SetRenderDrawColor(Renderer, 255, 0 , 0 ,255); // this is red 
-
-    // Vec3 *transformed = malloc(model->Num_vertex * sizeof(Vec3));
-    // for(int i = 0; i < model->Num_vertex; i++){
-    //     Vec3 v = model->vertices[i];
-    //     transformed[i] = TransformCamera(v, cam);
-    // }
-    // // now we render using that temp/ transformed i 
+    DrawLinePickColor(model, cam, 0,0,0);
+    SDL_SetRenderDrawColor(Renderer, 255, 0, 0, 255);
 
     for(int i = 0; i < model->Num_vertex; i++){
         Vec3 t = transformed_vertices[i];
-
         if(t.z <= 0.1f) continue;
 
         int x = (t.x / t.z) * scale + center_x; 
-        int y = -(t.y / t.z) * scale + center_y;
+        int y =  -(t.y / t.z) * scale + center_y;
 
         DrawCircle(Renderer, x, y, 5);
-
     }
-
-    // free(transformed);
-
 }
+
+// void RenderFilledVertex(const Mesh *model, Camera cam){
+
+//     //SDL_SetRenderDrawColor(Renderer, 200, 200, 200, 255); 
+//     for(int i = 0; i < model->Num_face; i++){
+//         Face face = model->face[i];
+//         Vec3 v0 = TransformCamera(model->vertices[face.v[0]], cam);
+//         Vec3 v1 = TransformCamera(model->vertices[face.v[1]], cam);
+//         Vec3 v2 = TransformCamera(model->vertices[face.v[2]], cam);
+
+
+//         Vec3 clipped[2][3]; 
+//         int num_out = 1;
+//         // onlu clip if a vertex is behind the near plane
+//         if(v0.z < NEAR_PLANE || v1.z < NEAR_PLANE || v2.z < NEAR_PLANE){
+//             num_out = ClipTriangleNearPlane(v0,v1, v2, clipped, NEAR_PLANE);
+//             if(num_out == 0) continue;   
+//         }else{
+//             clipped[0][0] = v0;
+//             clipped[0][1] = v1; 
+//             clipped[0][2] = v2;
+//         }
+
+//         for(int j = 0; j < num_out; j++){ 
+//             Vec3 cv0 = clipped[j][0];
+//             Vec3 cv1 = clipped[j][1];
+//             Vec3 cv2 = clipped[j][2];
+
+//             if(!FaceVisible(cv0,cv1,cv2)){
+//                 continue;
+//             }
+
+//             int x0 = (v0.x / v0.z) * scale + center_x;
+//             int y0 = -(v0.y / v0.z) * scale + center_y;
+//             int x1 = (v1.x / v1.z) * scale + center_x;
+//             int y1 = -(v1.y / v1.z) * scale + center_y;
+//             int x2 = (v2.x / v2.z) * scale + center_x;
+//             int y2 = -(v2.y / v2.z) * scale + center_y;
+
+//             // lighting calculations 
+//             Vec3 normal = ComputeFaceNormal(cv0, cv1, cv2);
+//             Vec3 view_direc = { 0 , 0, 1};
+//             if(dotVec3(normal, view_direc) < 0){
+//                 normal = scalVec3(normal , 1.0f);
+
+//             }
+
+//         }
+
+
+//         // Vec3 normal = ComputeFaceNormal(v0, v1, v2);
+//         // Vec3 view_dir = {0, 0, -1}; // looking forward in camera space
+//         // if (dotVec3(normalizeVec3(normal), view_dir) >= 0) continue;
+
+
+//         if(v0.z <= 0 || v1.z <=0 || v2.z <= 0) continue; 
+
+
+
+
+
+
+
+
+
+//         filledTriangle(Renderer, x0, y0, x1, y1, x2, y2);
+//     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//     DrawLinePickColor(model, cam, 0 , 0, 0); 
+//     SDL_SetRenderDrawColor(Renderer, 255, 0 , 0 ,255); // this is red 
+
+//     for(int i = 0; i < model->Num_vertex; i++){
+//         Vec3 t = transformed_vertices[i];
+
+//         if(t.z <= 0.1f) continue;
+
+//         int x = (t.x / t.z) * scale + center_x; 
+//         int y = -(t.y / t.z) * scale + center_y;
+
+//         DrawCircle(Renderer, x, y, 5);
+
+//     }
+
+
+// }
 
 void present_display(void){
     SDL_RenderPresent(Renderer);

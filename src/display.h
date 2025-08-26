@@ -9,6 +9,7 @@
 #include "triangle.h"
 #include "light.h"
 #include "culling.h"
+#include "clipping.h"
 
 
 int initlizeWindow(void);
