@@ -30,4 +30,4 @@ Focus: **clarity + performance** on the CPU — no OpenGL/DirectX required.
 **macOS (Homebrew)**
 ```bash
 brew install sdl2
-make            # or: clang -std=c99 -O2 src/*.c -lSDL2 -o 3d-engine
+make        
