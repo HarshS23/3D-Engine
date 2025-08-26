@@ -10,7 +10,6 @@ int FaceVisible(Vec3 v0, Vec3 v1, Vec3 v2){
     Vec3 view_direc = {0.0f,0.0f,1.0f}; 
 
     float dot = dotVec3(normal, view_direc);
-    printf("Face dot: %.2f\n", dot);
 
     return dot > 0.0f;
 
