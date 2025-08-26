@@ -60,7 +60,7 @@ const char *select_file(const char** filename){
                 return filename[i];
             }
 
-            if(strcmp(input ,"quit") == 0){
+            if((strcmp(input ,"quit") == 0) || strcmp(input, "exit") == 0){
                 exit(EXIT_SUCCESS);
             }
         }
