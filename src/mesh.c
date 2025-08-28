@@ -102,4 +102,5 @@ void FreeMesh(Mesh model){
     free(model.face);
     free(model.Normal_Vec);
     free(model.texture);
+    
 }
