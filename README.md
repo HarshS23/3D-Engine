@@ -5,7 +5,7 @@ A lightweight, 3D engine written in C (CPU rasterizer), using the Left-Handed Co
 Focus: **clarity + performance** on the CPU — no OpenGL/DirectX required.
 
 <p align="center">
-  <img src="images/OP1.png" width="44%" alt="Clean wireframe"/>
+  <img src="images/OP1.png" width="44.5%" alt="Clean wireframe"/>
   <img src="images/OP2.png" width="45%" alt="Wireframe with vertices"/>
   <img src="images/OP3.png" width="45%" alt="Filled"/>
   <img src="images/OP4.png" width="45%" alt="Wireframe with vertices"/>
