@@ -3,6 +3,8 @@
 
 void filledTriangle(SDL_Renderer *renderer, int x0, int y0, int x1, int y1, int x2 , int y2){
 
+    
+
     // Sort by y-coordinate ascending (y0 <= y1 <= y2)
     if (y0 > y1) { int t=y0; y0=y1; y1=t; t=x0; x0=x1; x1=t; }
     if (y1 > y2) { int t=y1; y1=y2; y2=t; t=x1; x1=x2; x2=t; }
@@ -17,6 +19,8 @@ void filledTriangle(SDL_Renderer *renderer, int x0, int y0, int x1, int y1, int 
 
     float sx = x0;
     float ex = x0;
+
+    float z = 1.0f;
 
     for (int y = y0; y <= y1; y++) {
         SDL_RenderDrawLine(renderer, (int)sx, y, (int)ex, y);
@@ -33,11 +37,14 @@ void filledTriangle(SDL_Renderer *renderer, int x0, int y0, int x1, int y1, int 
     ex = x0 + dx2 * (y1 - y0);
 
     for (int y = y1; y <= y2; y++) {
+        
         SDL_RenderDrawLine(renderer, (int)sx, y, (int)ex, y);
         sx += dx1;
         ex += dx2;
     }
 }
+
+
 
 
 

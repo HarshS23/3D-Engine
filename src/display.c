@@ -64,6 +64,7 @@ void clear_display(void){
 
     SDL_SetRenderDrawColor(Renderer, 0 , 0, 0 , 255);  // this is the background color
     SDL_RenderClear(Renderer);
+    ClearDepthBuffer();
 }
 
 void DrawLinePickColor(const Mesh *model, Camera cam, int r , int g, int b){
