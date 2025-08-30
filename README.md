@@ -98,7 +98,7 @@ This project demonstrates the fundamentals of a real-time 3D graphics pipeline, 
 4. **Run the program**  
    - Start the program with:  
      ```sh
-     ./bin/main
+     make run
      ```  
    - When prompted, type the name of the model file you want to render from the `assets/` directory.  
    - ⚠️ Be sure to **include the `.obj` extension**, for example:  
