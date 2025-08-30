@@ -48,7 +48,7 @@ This project demonstrates the fundamentals of a real-time 3D graphics pipeline, 
 
 ---
 
-## ✨ Features
+##  Features
 - **OBJ file parsing** – loads and stores mesh vertices, faces, normals, and texture coordinates.  
 - **Multiple rendering modes**:
   1. Wireframe  
@@ -63,7 +63,7 @@ This project demonstrates the fundamentals of a real-time 3D graphics pipeline, 
 
 ---
 
-## 🎮 Controls
+##  Controls
 | Key | Action |
 |-----|---------|
 | **W / S** | Move forward / backward |
