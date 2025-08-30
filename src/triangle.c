@@ -20,8 +20,6 @@ void filledTriangle(SDL_Renderer *renderer, int x0, int y0, int x1, int y1, int 
     float sx = x0;
     float ex = x0;
 
-    float z = 1.0f;
-
     for (int y = y0; y <= y1; y++) {
         SDL_RenderDrawLine(renderer, (int)sx, y, (int)ex, y);
         sx += dx1;
