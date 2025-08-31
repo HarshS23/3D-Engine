@@ -85,9 +85,9 @@ Mesh LoadMeshFromOBJ(const char *filename){
             continue;
         }
 
-        // for(int i = 0; i < model.Num_vertex; i++){
-        //     model.vertices[i].z += 0.05;
-        // }
+        for(int i = 0; i < model.Num_vertex; i++){
+            model.vertices[i].z += 0.03;
+        }
     }
 
 
