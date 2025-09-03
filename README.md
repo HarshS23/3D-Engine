@@ -48,7 +48,7 @@ This project demonstrates the fundamentals of a real-time 3D graphics pipeline, 
 
 # Demo 
 
-<video src="assets/demo.mp4" controls></video/mp4>
+<video src="images/demo.mp4" controls></video/mp4>
 
 
 ---
