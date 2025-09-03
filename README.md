@@ -46,6 +46,11 @@ This project demonstrates the fundamentals of a real-time 3D graphics pipeline, 
   <img src="images/OP4.png" width="45%" alt="Wireframe with vertices"/>
 </p>
 
+# Demo 
+
+<video src="assets/demo.mov" controls></video>
+
+
 ---
 
 ##  Features
