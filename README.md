@@ -76,7 +76,7 @@ This project demonstrates the fundamentals of a real-time 3D graphics pipeline, 
 ---
 
 
-## ⚙️ Installation & Running
+## Installation & Running
 
 1. **Install SDL2**  
    - On macOS (Homebrew):  
@@ -101,7 +101,7 @@ This project demonstrates the fundamentals of a real-time 3D graphics pipeline, 
      make run
      ```  
    - When prompted, type the name of the model file you want to render from the `assets/` directory.  
-   - ⚠️ Be sure to **include the `.obj` extension**, for example:  
+   - Be sure to **include the `.obj` extension**, for example:  
      ```
      f22.obj
      ```
