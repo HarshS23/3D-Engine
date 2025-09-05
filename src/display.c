@@ -8,6 +8,7 @@
 
 
 
+
 static SDL_Window *Window = NULL; 
 static SDL_Renderer *Renderer = NULL; 
 static Vec3 transformed_vertices[100000]; // big enough for any model

@@ -36,36 +36,13 @@ int main(){
 
 
     while(running){
+
+
         while(SDL_PollEvent(&event)){
+
             if(event.type == SDL_QUIT){
                 running = 0; 
-            }
-            
-            const Uint8 *keys = SDL_GetKeyboardState(NULL);
-            
-             // camera movement 
-            Vec3 forward = GetForwardVector(cam);
-            Vec3 right = GetRightVector(cam);
-
-
-            if(keys[SDL_SCANCODE_W]) cam.postion = addVec3(cam.postion, scalVec3(forward, 0.05f)); // forwards
-            if(keys[SDL_SCANCODE_S]) cam.postion = subVec3(cam.postion, scalVec3(forward, 0.05f)); // backwards 
-            if(keys[SDL_SCANCODE_A]) cam.postion = subVec3(cam.postion, scalVec3(right, 0.05f)); // left 
-            if(keys[SDL_SCANCODE_D]) cam.postion = addVec3(cam.postion, scalVec3(right, 0.05f)); // right 
-
-            // up / down vertical movements  (NOT PITCH)
-            if(keys[SDL_SCANCODE_Q]) cam.postion.y += 0.05f; // move camera upwardes 
-            if(keys[SDL_SCANCODE_E]) cam.postion.y -= 0.05f; // more camera downwards 
-
-
-            if(keys[SDL_SCANCODE_LEFT]) cam.yaw -= 0.03f; // rotate left 
-            if(keys[SDL_SCANCODE_RIGHT]) cam.yaw += 0.03f; // rotate right 
-
-            if(keys[SDL_SCANCODE_UP]) cam.pitch += 0.03f; // rotate up 
-            if(keys[SDL_SCANCODE_DOWN]) cam.pitch -= 0.03f; // rotate down 
-
-            if(cam.pitch > 1.5f) cam.pitch = 1.5f; 
-            if(cam.pitch < -1.5f) cam.pitch = -1.5f;
+            }        
 
             if(event.type == SDL_KEYDOWN){
                 // render modes
@@ -82,11 +59,42 @@ int main(){
             }
 
         }
+        
+        const Uint8 *keys = SDL_GetKeyboardState(NULL);
+            
+        // camera movement 
+        Vec3 forward = GetForwardVector(cam);
+        Vec3 right = GetRightVector(cam);
 
 
+        if(keys[SDL_SCANCODE_W]) cam.postion = addVec3(cam.postion, scalVec3(forward, 0.03f)); // forwards
+        if(keys[SDL_SCANCODE_S]) cam.postion = subVec3(cam.postion, scalVec3(forward, 0.03f)); // backwards 
+        if(keys[SDL_SCANCODE_A]) cam.postion = subVec3(cam.postion, scalVec3(right, 0.03f)); // left 
+        if(keys[SDL_SCANCODE_D]) cam.postion = addVec3(cam.postion, scalVec3(right, 0.03f)); // right 
+        if(keys[SDL_SCANCODE_0]) running = 0;
 
+        // up / down vertical movements  (NOT PITCH)
+        if(keys[SDL_SCANCODE_Q]) cam.postion.y += 0.03f; // move camera upwardes 
+        if(keys[SDL_SCANCODE_E]) cam.postion.y -= 0.03f; // more camera downwards 
+
+
+        if(keys[SDL_SCANCODE_LEFT]) cam.yaw -= 0.015f; // rotate left 
+        if(keys[SDL_SCANCODE_RIGHT]) cam.yaw += 0.015f; // rotate right 
+
+        if(keys[SDL_SCANCODE_UP]) cam.pitch += 0.015f; // rotate up 
+        if(keys[SDL_SCANCODE_DOWN]) cam.pitch -= 0.015f; // rotate down 
+
+        if(cam.pitch > 1.5f) cam.pitch = 1.5f; 
+        if(cam.pitch < -1.5f) cam.pitch = -1.5f;
 
         clear_display();
+
+
+        UpdateTransformedVertices(&model , cam);
+
+
+
+
 
         if(render_mode == 1){
             UpdateTransformedVertices(&model, cam);
@@ -107,6 +115,8 @@ int main(){
             UpdateTransformedVertices(&model, cam);
             RenderFilledVertex(&model, cam);
         }
+
+
         present_display();
 
     }
