@@ -73,7 +73,7 @@ This project demonstrates the fundamentals of a real-time 3D graphics pipeline, 
 | **1–4** | Switch rendering mode |
 | **R** | Reset camera to origin |
 | **Close Window** | Quit program |
-| ** Exit Program***| Quit program|
+| **Exit Program (0)**| Quit program|
 ---
 
 
