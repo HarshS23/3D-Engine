@@ -92,10 +92,6 @@ int main(){
 
         UpdateTransformedVertices(&model , cam);
 
-
-
-
-
         if(render_mode == 1){
             UpdateTransformedVertices(&model, cam);
             RenderWireFrame(&model, cam);
