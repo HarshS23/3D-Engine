@@ -48,8 +48,12 @@ This project demonstrates the fundamentals of a real-time 3D graphics pipeline, 
 
 
 
-### Demo Video
-[![3D Engine Demo](https://img.youtube.com/vi/GSbUNflepYQ/0.jpg)](https://youtu.be/GSbUNflepYQ)
+## Demo Video
+<p align="center">
+  <a href="https://youtu.be/GSbUNflepYQ">
+    <img src="https://img.youtube.com/vi/GSbUNflepYQ/0.jpg" width="720">
+  </a>
+</p>
 
 
 ---
