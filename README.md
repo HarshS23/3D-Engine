@@ -47,8 +47,9 @@ This project demonstrates the fundamentals of a real-time 3D graphics pipeline, 
 </p>
 
 
-## 🎥 Video Demo
-[![View Demo Video](images/OP3.png)](images/Demo2.mp4)
+
+### Demo Video
+[![3D Engine Demo](https://img.youtube.com/vi/GSbUNflepYQ/0.jpg)](https://youtu.be/GSbUNflepYQ)
 
 
 ---
