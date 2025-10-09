@@ -67,22 +67,22 @@ int main(){
         Vec3 right = GetRightVector(cam);
 
 
-        if(keys[SDL_SCANCODE_W]) cam.postion = addVec3(cam.postion, scalVec3(forward, 0.03f)); // forwards
-        if(keys[SDL_SCANCODE_S]) cam.postion = subVec3(cam.postion, scalVec3(forward, 0.03f)); // backwards 
-        if(keys[SDL_SCANCODE_A]) cam.postion = subVec3(cam.postion, scalVec3(right, 0.03f)); // left 
-        if(keys[SDL_SCANCODE_D]) cam.postion = addVec3(cam.postion, scalVec3(right, 0.03f)); // right 
+        if(keys[SDL_SCANCODE_W]) cam.postion = addVec3(cam.postion, scalVec3(forward, 0.008f)); // forwards
+        if(keys[SDL_SCANCODE_S]) cam.postion = subVec3(cam.postion, scalVec3(forward, 0.008f)); // backwards 
+        if(keys[SDL_SCANCODE_A]) cam.postion = subVec3(cam.postion, scalVec3(right, 0.008f)); // left 
+        if(keys[SDL_SCANCODE_D]) cam.postion = addVec3(cam.postion, scalVec3(right, 0.008f)); // right 
         if(keys[SDL_SCANCODE_0]) running = 0;
 
         // up / down vertical movements  (NOT PITCH)
-        if(keys[SDL_SCANCODE_Q]) cam.postion.y += 0.03f; // move camera upwardes 
-        if(keys[SDL_SCANCODE_E]) cam.postion.y -= 0.03f; // more camera downwards 
+        if(keys[SDL_SCANCODE_Q]) cam.postion.y += 0.007f; // move camera upwardes 
+        if(keys[SDL_SCANCODE_E]) cam.postion.y -= 0.007f; // more camera downwards 
 
 
-        if(keys[SDL_SCANCODE_LEFT]) cam.yaw -= 0.015f; // rotate left 
-        if(keys[SDL_SCANCODE_RIGHT]) cam.yaw += 0.015f; // rotate right 
+        if(keys[SDL_SCANCODE_LEFT]) cam.yaw -= 0.005f; // rotate left 
+        if(keys[SDL_SCANCODE_RIGHT]) cam.yaw += 0.005f; // rotate right 
 
-        if(keys[SDL_SCANCODE_UP]) cam.pitch += 0.015f; // rotate up 
-        if(keys[SDL_SCANCODE_DOWN]) cam.pitch -= 0.015f; // rotate down 
+        if(keys[SDL_SCANCODE_UP]) cam.pitch += 0.005f; // rotate up 
+        if(keys[SDL_SCANCODE_DOWN]) cam.pitch -= 0.005f; // rotate down 
 
         if(cam.pitch > 1.5f) cam.pitch = 1.5f; 
         if(cam.pitch < -1.5f) cam.pitch = -1.5f;
