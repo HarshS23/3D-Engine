@@ -56,7 +56,7 @@ const char *select_file(const char** filename){
         for(int i = 0; i < count; i++){
 
             if(strcmp(input, filename[i]) == 0){
-                //printf("HERE IS THE SELECTED INTPUT: %s\n", filename[i]);
+                
                 return filename[i];
             }
 
