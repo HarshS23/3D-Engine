@@ -13,10 +13,18 @@ This project demonstrates the fundamentals of a real-time 3D graphics pipeline, 
 
 
 
-## Demo Video
+<!-- ## Demo Video
 <p align="center">
   <a href="https://youtu.be/PCHrQZfpqto">
     <img src="https://img.youtube.com/vi/GSbUNflepYQ/0.jpg" width="720">
+  </a>
+</p> -->
+
+
+## Demo Video
+<p align="center">
+  <a href="https://youtu.be/PCHrQZfpqto">
+    <img src="https://img.youtube.com/vi/PCHrQZfpqto/0.jpg" width="720">
   </a>
 </p>
 
