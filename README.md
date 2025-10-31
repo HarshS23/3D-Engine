@@ -41,8 +41,8 @@ This project demonstrates the fundamentals of a real-time 3D graphics pipeline, 
 | Key | Action |
 |-----|---------|
 | **W / S** | Move forward / backward |
-| **A / D** | Strafe left / right |
-| **Q / E** | Move camera up / down |
+| **A / D** | Move left / right |
+| **Q / E** | Move  up / down |
 | **Arrow Keys** | Rotate camera (yaw / pitch) |
 | **1–4** | Switch rendering mode |
 | **R** | Reset camera to origin |
