@@ -60,7 +60,8 @@ This project demonstrates the fundamentals of a real-time 3D graphics pipeline, 
      ```
 
 2. **Open the project in VS Code**  
-   - Clone this repository.  
+   - Fork this repository.
+   - Clone your forked repository
    - Open the folder in **Visual Studio Code** (or your preferred editor).  
 
 3. **Build the program**  
