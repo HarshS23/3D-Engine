@@ -3,6 +3,7 @@
 
 A lightweight **software 3D rendering engine** written in **C** using **SDL2**.  
 This project demonstrates the fundamentals of a real-time 3D graphics pipeline, including vector math, mesh loading, camera transformations, clipping, backface culling, and basic lighting.
+Currently only works for macOS.
 
 <p align="center">
   <img src="images/OP1.png" width="45%" alt="Clean wireframe"/>
